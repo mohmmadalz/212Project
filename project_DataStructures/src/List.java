@@ -1,6 +1,6 @@
 
 public interface List <T> {
-	//Mi
+	//hi
 	    public void findFirst( );  
 	    public void findNext( );  
 	    public T retrieve( );  
