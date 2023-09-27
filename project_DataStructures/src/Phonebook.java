@@ -1,7 +1,7 @@
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-
+//HI Mo502
 class Contact implements Comparable<Contact> {
     private String name;
     private String phoneNumber;
