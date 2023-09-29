@@ -10,7 +10,7 @@ public class LinkedList<T extends Comparable<T>> {
             this.data = data;
             this.next = null;
         }
-        //TestTestTestTestTestTest5
+        
         
     }
     
