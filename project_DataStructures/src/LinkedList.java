@@ -5,13 +5,13 @@ public class LinkedList<T extends Comparable<T>> {
     private static class Node<T> {
         T data;
         Node<T> next;
-        Node<T> previous;
+        
         //Making double LinkedList
         
         Node(T data) {
             this.data = data;
             this.next = null;
-            this.previous = null;
+            
 
         }
         
