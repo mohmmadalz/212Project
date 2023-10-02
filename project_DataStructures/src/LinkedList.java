@@ -1,4 +1,4 @@
-   public class LinkedList<T> implements List<T> {
+public class LinkedList<T> implements List<T> {
 	// for contact
 	    private Node<T> head;
 	    private Node<T> current;
@@ -71,11 +71,9 @@
 					current = head;
 				else
 					current = current.next;
-			}
-	
-	   
-	   
-	   
-	  
-	  
+			                   }
+
+	 public Contact search(Contact contact) {
+		        // implement method to search if this contact is exist before.
+		return null;
 	}
