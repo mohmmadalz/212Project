@@ -77,3 +77,4 @@ public class LinkedList<T> implements List<T> {
 		        // implement method to search if this contact is exist before.
 		return null;
 	}
+}
