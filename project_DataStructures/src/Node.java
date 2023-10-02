@@ -1,4 +1,3 @@
-
 public class Node<T> {
 
 	public T data;  
@@ -35,9 +34,4 @@ public class Node<T> {
 	public void setNext(Node<T> next) {  
 	    this.next = next;  
 	}  
-	  
-	  
-	}  
-
-
-
+}
