@@ -72,9 +72,15 @@ public class LinkedList<T> implements List<T> {
 				else
 					current = current.next;
 			                   }
-
+  // implement method to search if this contact is exist before.
 	 public Contact search(Contact contact) {
-		        // implement method to search if this contact is exist before.
+		 Node<T> tmp = head;
+		 while(tmp != null) {
+			 if(tmp.data.equals(contact)) {
+				 return (Contact) tmp.data;
+			 }
+			 tmp = tmp.next;
+		 }
 		return null;
 	}
 }
