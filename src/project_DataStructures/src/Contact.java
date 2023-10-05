@@ -76,13 +76,13 @@ public class Contact implements Comparable<Contact> {
 		        return this.name.compareTo(otherContact.name);
 		    }
 	
-		public void printInfo (Contact contact ) {
+		public void printInfo () {
 		
-			System.out.println("Name: " + contact.name);
-			System.out.println("Phone number: " + contact.phoneNumber);
-			System.out.println("Email addres: " + contact.emailAddress);
-			System.out.println("Address: " + contact.address);
-			System.out.println("Birthday: " + contact.birthday);
+			System.out.println("Name: " + name);
+			System.out.println("Phone number: " + phoneNumber);
+			System.out.println("Email addres: " + emailAddress);
+			System.out.println("Address: " + address);
+			System.out.println("Birthday: " + birthday);
 		
 		}	
 		
