@@ -1,7 +1,7 @@
 public class Event {
 //hi Mo is here
     private String title;
-    private Date date;
+    private String date;
     private String location;
     private Contact contact;
 
@@ -17,7 +17,7 @@ public class Event {
           return title;
       }
   
-      public Date getDate() {
+      public String getDate() {
           return date;
       }
   
@@ -28,6 +28,10 @@ public class Event {
       public Contact getContact() {
           return contact;
       }
+    
 
-      
+      public void addInfo (Event event){
+			System.out.println("Note: " + event.getTitle());
+			
+      }
 }
