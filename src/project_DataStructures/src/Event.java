@@ -30,5 +30,8 @@ public class Event {
       }
     
 
-      
+      public void addInfo (Event event){
+			System.out.println("Note: " + event.getTitle());
+			
+      }
 }
