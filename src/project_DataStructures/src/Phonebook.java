@@ -14,38 +14,36 @@ public class Phonebook{
 			contacts.insert(contact);
 		}
 	    
-		public Contact searchContact(int searchOption, String searchValue) {
+		public boolean searchContact(int searchOption, String searchValue) {
 			if(contacts.empty())
-				return null;
+				return false;
 			contacts.findFirst();
 			boolean found=false;
-			switch (searchOption) {
-			case 1:
-				
-				while(!found) {
+			while(!found) {
+				switch (searchOption) {
+				case 1:
 					found=contacts.retrieve().getName().equalsIgnoreCase(searchValue);
-					if(!contacts.last())
-						contacts.findNext();
-					
+					break;
+				case 2:
+					found=contacts.retrieve().getPhoneNumber().equalsIgnoreCase(searchValue);
+					break;
+				case 3:
+					found=contacts.retrieve().getEmailAddress().equalsIgnoreCase(searchValue);
+					break;					
+				case 4:
+					found=contacts.retrieve().getAddress().equalsIgnoreCase(searchValue);
+					break;
+				case 5:
+					found=contacts.retrieve().getBirthday().equalsIgnoreCase(searchValue);
+					break;
+				default:
+					System.out.println("Invalid criteria");
+					return false;				
 				}
-				return found;
-			case 2:
-				found=contacts.retrieve().getPhoneNumber().equalsIgnoreCase(searchValue);
-				break;
-			case 3:
-				found=contacts.retrieve().getEmailAddress().equalsIgnoreCase(searchValue);
-				break;					
-			case 4:
-				found=contacts.retrieve().getAddress().equalsIgnoreCase(searchValue);
-				break;
-			case 5:
-				found=contacts.retrieve().getBirthday().equalsIgnoreCase(searchValue);
-				break;
-			default:
-				System.out.println("Invalid criteria");
-				return false;				
+				if(contacts.last() || found)
+					return found;
+				contacts.findNext();
 			}
-			
 			return found;
 		}
 	    
