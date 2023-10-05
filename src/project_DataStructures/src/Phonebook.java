@@ -10,12 +10,43 @@ public class Phonebook{
 	        events = new LinkedList<>();
 		}
 		
-		public boolean addContact(Contact contact) {
+		public void addContact(Contact contact) {
 			contacts.insert(contact);
 		}
 	    
-		public boolean searchContact(String criteria, String searchValue) {
+		public Contact searchContact(int searchOption, String searchValue) {
+			if(contacts.empty())
+				return null;
+			contacts.findFirst();
+			boolean found=false;
+			switch (searchOption) {
+			case 1:
+				
+				while(!found) {
+					found=contacts.retrieve().getName().equalsIgnoreCase(searchValue);
+					if(!contacts.last())
+						contacts.findNext();
+					
+				}
+				return found;
+			case 2:
+				found=contacts.retrieve().getPhoneNumber().equalsIgnoreCase(searchValue);
+				break;
+			case 3:
+				found=contacts.retrieve().getEmailAddress().equalsIgnoreCase(searchValue);
+				break;					
+			case 4:
+				found=contacts.retrieve().getAddress().equalsIgnoreCase(searchValue);
+				break;
+			case 5:
+				found=contacts.retrieve().getBirthday().equalsIgnoreCase(searchValue);
+				break;
+			default:
+				System.out.println("Invalid criteria");
+				return false;				
+			}
 			
+			return found;
 		}
 	    
 		public void deleteContact(String name) {
@@ -47,23 +78,23 @@ public class Phonebook{
 	        // implement ...
 	    }
 		
-		public static void main(String[] args) {
+		public void menu() {
 			Scanner input = new Scanner(System.in);
-			
-			String menu="Welcome to the Linked Tree Phonebook!\r\n"
-					+ "Please choose an option:\r\n"
-					+ "1. Add a contact\r\n"
-					+ "2. Search for a contact\r\n"
-					+ "3. Delete a contact\r\n"
-					+ "4. Schedule an event\r\n"
-					+ "5. Print event details\r\n"
-					+ "6. Print contacts by first name\r\n"
-					+ "7. Print all events alphabetically\r\n"
-					+ "8. Exit\r\n"
-					+ "\nEnter your choice:";
-			System.out.println(menu);
-			int choice= input.nextInt();
-			while(choice != 8) {
+			int choice;
+			do {
+				String menu="Welcome to the Linked Tree Phonebook!\r\n"
+						+ "Please choose an option:\r\n"
+						+ "1. Add a contact\r\n"
+						+ "2. Search for a contact\r\n"
+						+ "3. Delete a contact\r\n"
+						+ "4. Schedule an event\r\n"
+						+ "5. Print event details\r\n"
+						+ "6. Print contacts by first name\r\n"
+						+ "7. Print all events alphabetically\r\n"
+						+ "8. Exit\r\n"
+						+ "\nEnter your choice:";
+				System.out.println(menu);
+				choice= input.nextInt();
 				switch (choice) {
 				case 1: {
 					Contact contact = new Contact();
@@ -79,12 +110,23 @@ public class Phonebook{
 					contact.setBirthday(input.next());
 					System.out.println("Enter any notes for the contact: ");
 					contact.setNotes(input.nextLine());
-					
-					
+					if(!contactExists(contact)) {
+						System.out.println("\nContact added successfully!\n");
+						addContact(contact);
+					}
+						
 					break;
 				}
 				case 2: {
-					
+					System.out.println("Enter search criteria:\r\n"
+							+ "1. Name\r\n"
+							+ "2. Phone Number\r\n"
+							+ "3. Email Address\r\n"
+							+ "4. Address\r\n"
+							+ "5. Birthday\r\n"
+							+ "\nEnter your choice: ");
+					int criteria=input.nextInt();
+
 				}
 				case 3: {
 					
@@ -107,7 +149,9 @@ public class Phonebook{
 				default:
 					throw new IllegalArgumentException("Unexpected value: " + key);
 				}
-			}
+			} while(choice != 8);
+
+			
 			input.close();
 		}
 
