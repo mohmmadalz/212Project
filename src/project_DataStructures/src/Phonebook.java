@@ -86,6 +86,76 @@ public class Phonebook{
 			}
 
 		}
+	    private LinkedList<Contact> searchByName(String name) {
+	    	LinkedList<Contact> founded = new LinkedList<>();
+	    	if(contacts.empty())
+	    		return founded;
+	    	contacts.findFirst();
+	    	while(!contacts.last()) {
+	    		if(contacts.retrieve().getName().equalsIgnoreCase(name))
+	    			founded.insert(contacts.retrieve());
+	    		contacts.findNext();
+	    	}
+	    	if(contacts.retrieve().getName().equalsIgnoreCase(name))
+    			founded.insert(contacts.retrieve());
+	    	return founded;
+	    }
+	    private LinkedList<Contact> searchByPhoneNumber(String PhoneNumber) {
+	    	LinkedList<Contact> founded = new LinkedList<>();
+	    	if(contacts.empty())
+	    		return founded;
+	    	contacts.findFirst();
+	    	while(!contacts.last()) {
+	    		if(contacts.retrieve().getPhoneNumber().equalsIgnoreCase(PhoneNumber))
+	    			founded.insert(contacts.retrieve());
+	    		contacts.findNext();
+	    	}
+	    	if(contacts.retrieve().getPhoneNumber().equalsIgnoreCase(PhoneNumber))
+    			founded.insert(contacts.retrieve());
+	    	return founded;
+	    }
+	    private LinkedList<Contact> searchByEmailAddress(String EmailAddress) {
+	    	LinkedList<Contact> founded = new LinkedList<>();
+	    	if(contacts.empty())
+	    		return founded;
+	    	contacts.findFirst();
+	    	while(!contacts.last()) {
+	    		if(contacts.retrieve().getEmailAddress().equalsIgnoreCase(EmailAddress))
+	    			founded.insert(contacts.retrieve());
+	    		contacts.findNext();
+	    	}
+	    	if(contacts.retrieve().getEmailAddress().equalsIgnoreCase(EmailAddress))
+    			founded.insert(contacts.retrieve());
+	    	return founded;
+	    }
+	    private LinkedList<Contact> searchByAddress(String Address) {
+	    	LinkedList<Contact> founded = new LinkedList<>();
+	    	if(contacts.empty())
+	    		return founded;
+	    	contacts.findFirst();
+	    	while(!contacts.last()) {
+	    		if(contacts.retrieve().getAddress().equalsIgnoreCase(Address))
+	    			founded.insert(contacts.retrieve());
+	    		contacts.findNext();
+	    	}
+	    	if(contacts.retrieve().getAddress().equalsIgnoreCase(Address))
+    			founded.insert(contacts.retrieve());
+	    	return founded;
+	    }
+	    private LinkedList<Contact> searchByBirthday(String Birthday) {
+	    	LinkedList<Contact> founded = new LinkedList<>();
+	    	if(contacts.empty())
+	    		return founded;
+	    	contacts.findFirst();
+	    	while(!contacts.last()) {
+	    		if(contacts.retrieve().getBirthday().equalsIgnoreCase(Birthday))
+	    			founded.insert(contacts.retrieve());
+	    		contacts.findNext();
+	    	}
+	    	if(contacts.retrieve().getBirthday().equalsIgnoreCase(Birthday))
+    			founded.insert(contacts.retrieve());
+	    	return founded;
+	    }
 	    
 		public void deleteContact(String name) {
 			// implement ...
