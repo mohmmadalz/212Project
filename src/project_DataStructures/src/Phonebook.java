@@ -14,77 +14,82 @@ public class Phonebook{
 			contacts.insert(contact);
 		}
 	    
-		public boolean searchContact(int criteria) {
+		public void searchContact(int criteria) {
 			String searchValue="";
+			LinkedList<Contact> founded;
 			Scanner input = new Scanner(System.in);
-			if(contacts.empty()) {
-				input.close();
-				return false;
-			}
 			contacts.findFirst();
-			boolean found=false;
 			switch (criteria) {
 			case 1:
 				System.out.println("Enter the contact's name: ");
 				searchValue=input.nextLine();
 				input.close();
-				while(!found) {
-					found=contacts.retrieve().getName().equalsIgnoreCase(searchValue);
-					if(contacts.last() || found)
-						return found;
-					contacts.findNext();
-				}
-				return found;
+			    founded=searchByName(searchValue);
+			    if(!founded.empty())
+			    	printAllContacts(founded);
+			    else
+			    	System.out.println("contact not found");
+				break;
 			case 2:
 				System.out.println("Enter the contact's PhoneNumber: ");
 				searchValue=input.next();
 				input.close();
-				while(!found) {
-					found=contacts.retrieve().getPhoneNumber().equalsIgnoreCase(searchValue);
-					if(contacts.last() || found)
-						return found;
-					contacts.findNext();
-				}
-				return found;
+				founded=searchByPhoneNumber(searchValue);
+			    if(!founded.empty())
+			    	printAllContacts(founded);
+			    else
+			    	System.out.println("contact not found");
+				break;
 			case 3:
 				System.out.println("Enter the contact's EmailAddress: ");
 				searchValue=input.next();
 				input.close();
-				while(!found) {
-					found=contacts.retrieve().getEmailAddress().equalsIgnoreCase(searchValue);
-					if(contacts.last() || found)
-						return found;
-					contacts.findNext();
-				}
-				return found;
+				founded=searchByEmailAddress(searchValue);
+			    if(!founded.empty())
+			    	printAllContacts(founded);
+			    else
+			    	System.out.println("contact not found");
+				break;
 			case 4:
 				System.out.println("Enter the contact's Address: ");
 				searchValue=input.nextLine();
 				input.close();
-				while(!found) {
-					found=contacts.retrieve().getAddress().equalsIgnoreCase(searchValue);
-					if(contacts.last() || found)
-						return found;
-					contacts.findNext();
-				}
-				return found;
+				founded=searchByAddress(searchValue);
+			    if(!founded.empty())
+			    	printAllContacts(founded);
+			    else
+			    	System.out.println("contact not found");
+				break;
 			case 5:
 				System.out.println("Enter the contact's Birthday: ");
 				searchValue=input.next();
 				input.close();
-				while(!found) {
-					found=contacts.retrieve().getBirthday().equalsIgnoreCase(searchValue);
-					if(contacts.last() || found)
-						return found;
-					contacts.findNext();
-				}
-				return found;
+				founded=searchByBirthday(searchValue);
+			    if(!founded.empty())
+			    	printAllContacts(founded);
+			    else
+			    	System.out.println("contact not found");
+				break;
 			default:
 				System.out.println("Invalid criteria");
 				input.close();
-				return false;				
+				break;
 			}
 
+		}
+		private void printAllContacts(LinkedList<Contact> list) {
+			if(list.empty())
+				return;
+			list.findFirst();
+			if(list.last())
+				System.out.println("Contact found!\r\n");
+			else
+				System.out.println("Contacts found! \r\n");
+			while(!list.last()) {
+	    		list.retrieve().printInfo();
+				list.findNext();
+	    	}
+    		list.retrieve().printInfo();
 		}
 	    private LinkedList<Contact> searchByName(String name) {
 	    	LinkedList<Contact> founded = new LinkedList<>();
@@ -166,7 +171,19 @@ public class Phonebook{
 		}
 	    
 	    public void printContactsByFirstName(String firstName) {
-	    	
+	    	LinkedList<Contact> founded = new LinkedList<>();
+	    	if(contacts.empty())
+	    		System.out.println("there are no contacts by this first name ");
+	    	contacts.findFirst();
+	    	firstName += " ";
+	    	while(!contacts.last()) {
+	    		if(contacts.retrieve().getName().startsWith(firstName))
+	    			founded.insert(contacts.retrieve());
+	    		contacts.findNext();
+	    	}
+	    	if(contacts.retrieve().getName().startsWith(firstName))
+    			founded.insert(contacts.retrieve());
+	    	printAllContacts(founded);
 	    }
 	    
 	    public void printAllEventsAlphabetically() {
@@ -174,7 +191,7 @@ public class Phonebook{
 	    }
 
 	    private boolean contactExists(Contact contact) {
-	        return (searchContact(0))
+	        return (searchByName(contact.getName()).empty() && searchByPhoneNumber(contact.getPhoneNumber()).empty());
 	    }
 	    
 	    private boolean eventConflictExists(Event newEvent) {
@@ -234,13 +251,7 @@ public class Phonebook{
 							+ "5. Birthday\r\n"
 							+ "\nEnter your choice: ");
 					int criteria=input.nextInt();
-					if(searchContact(criteria)) {
-						System.out.println("Contact found!\r\n");
-						contacts.retrieve().printInfo();
-					}
-					else {
-						System.out.println("Contact not found");
-					}
+					searchContact(criteria);
 				}
 				break;
 				case 3: {
