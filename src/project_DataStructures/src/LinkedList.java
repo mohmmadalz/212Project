@@ -73,11 +73,11 @@ public class LinkedList<T> implements List<T> {
 					current = current.next;
 			                   }
   // implement method to search if this contact is exist before.
-	 public Contact search(Contact contact) {
+	 public T search(T value) {
 		 Node<T> tmp = head;
 		 while(tmp != null) {
-			 if(tmp.data.equals(contact)) {
-				 return (Contact) tmp.data;
+			 if(tmp.data.equals(value)) {
+				 return (T) tmp.data;
 			 }
 			 tmp = tmp.next;
 		 }

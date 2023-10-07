@@ -2,12 +2,10 @@ package project_DataStructures.src;
 import java.util.Scanner;
 public class Phonebook{
 	    private LinkedList<Contact> contacts;
-	    private LinkedList<Event> events;
 		
 	   
 		public Phonebook() {
 			contacts = new LinkedList<>();
-	        events = new LinkedList<>();
 		}
 		
 		public void addContact(Contact contact) {

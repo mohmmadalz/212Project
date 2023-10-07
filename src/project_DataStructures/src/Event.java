@@ -3,12 +3,12 @@ public class Event {
     private String title;
     private String date;
     private String location;
-    private Contact contact;
+    private Contact eventuser;
 
     public Event(String title, String date, String location, Contact contact) {
         this.title = title;
         this.location = location;
-        this.contact = contact;
+        this.eventuser = contact;
         this.date = date;
        
     }
@@ -26,7 +26,7 @@ public class Event {
       }
   
       public Contact getContact() {
-          return contact;
+          return eventuser;
       }
     
 
