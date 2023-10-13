@@ -2,208 +2,234 @@ package project_DataStructures.src;
 import java.util.Scanner;
 public class Phonebook{
 	    private LinkedList<Contact> contacts;
-		
-		
 	   
 		public Phonebook() {
 			contacts = new LinkedList<>();
-		}
+			
+				}
+		
 		
 		public void addContact(Contact contact) {
-			contacts.insert(contact);
-		}
-	    
-		public void searchContact(int criteria) {
-			String searchValue="";
-			LinkedList<Contact> founded;
-			Scanner input = new Scanner(System.in);
-			contacts.findFirst();
-			switch (criteria) {
-			case 1:
-				System.out.println("Enter the contact's name: ");
-				searchValue=input.nextLine();
-				input.close();
-			    founded=searchByName(searchValue);
-			    if(!founded.empty())
-			    	printAllContacts(founded);
-			    else
-			    	System.out.println("contact not found");
-				break;
-			case 2:
-				System.out.println("Enter the contact's PhoneNumber: ");
-				searchValue=input.next();
-				input.close();
-				founded=searchByPhoneNumber(searchValue);
-			    if(!founded.empty())
-			    	printAllContacts(founded);
-			    else
-			    	System.out.println("contact not found");
-				break;
-			case 3:
-				System.out.println("Enter the contact's EmailAddress: ");
-				searchValue=input.next();
-				input.close();
-				founded=searchByEmailAddress(searchValue);
-			    if(!founded.empty())
-			    	printAllContacts(founded);
-			    else
-			    	System.out.println("contact not found");
-				break;
-			case 4:
-				System.out.println("Enter the contact's Address: ");
-				searchValue=input.nextLine();
-				input.close();
-				founded=searchByAddress(searchValue);
-			    if(!founded.empty())
-			    	printAllContacts(founded);
-			    else
-			    	System.out.println("contact not found");
-				break;
-			case 5:
-				System.out.println("Enter the contact's Birthday: ");
-				searchValue=input.next();
-				input.close();
-				founded=searchByBirthday(searchValue);
-			    if(!founded.empty())
-			    	printAllContacts(founded);
-			    else
-			    	System.out.println("contact not found");
-				break;
-			default:
-				System.out.println("Invalid criteria");
-				input.close();
-				break;
-			}
-
-		}
-		private void printAllContacts(LinkedList<Contact> list) {
-			if(list.empty())
-				return;
-			list.findFirst();
-			if(list.last())
-				System.out.println("Contact found!\r\n");
-			else
-				System.out.println("Contacts found! \r\n");
-			while(!list.last()) {
-	    		list.retrieve().printInfo();
-				list.findNext();
-	    	}
-    		list.retrieve().printInfo();
-		}
-	    private LinkedList<Contact> searchByName(String name) {
-	    	LinkedList<Contact> founded = new LinkedList<>();
-	    	if(contacts.empty())
-	    		return founded;
-	    	contacts.findFirst();
-	    	while(!contacts.last()) {
-	    		if(contacts.retrieve().getName().equalsIgnoreCase(name))
-	    			founded.insert(contacts.retrieve());
-	    		contacts.findNext();
-	    	}
-	    	if(contacts.retrieve().getName().equalsIgnoreCase(name))
-    			founded.insert(contacts.retrieve());
-	    	return founded;
-	    }
-	    private LinkedList<Contact> searchByPhoneNumber(String PhoneNumber) {
-	    	LinkedList<Contact> founded = new LinkedList<>();
-	    	if(contacts.empty())
-	    		return founded;
-	    	contacts.findFirst();
-	    	while(!contacts.last()) {
-	    		if(contacts.retrieve().getPhoneNumber().equalsIgnoreCase(PhoneNumber))
-	    			founded.insert(contacts.retrieve());
-	    		contacts.findNext();
-	    	}
-	    	if(contacts.retrieve().getPhoneNumber().equalsIgnoreCase(PhoneNumber))
-    			founded.insert(contacts.retrieve());
-	    	return founded;
-	    }
-	    private LinkedList<Contact> searchByEmailAddress(String EmailAddress) {
-	    	LinkedList<Contact> founded = new LinkedList<>();
-	    	if(contacts.empty())
-	    		return founded;
-	    	contacts.findFirst();
-	    	while(!contacts.last()) {
-	    		if(contacts.retrieve().getEmailAddress().equalsIgnoreCase(EmailAddress))
-	    			founded.insert(contacts.retrieve());
-	    		contacts.findNext();
-	    	}
-	    	if(contacts.retrieve().getEmailAddress().equalsIgnoreCase(EmailAddress))
-    			founded.insert(contacts.retrieve());
-	    	return founded;
-	    }
-	    private LinkedList<Contact> searchByAddress(String Address) {
-	    	LinkedList<Contact> founded = new LinkedList<>();
-	    	if(contacts.empty())
-	    		return founded;
-	    	contacts.findFirst();
-	    	while(!contacts.last()) {
-	    		if(contacts.retrieve().getAddress().equalsIgnoreCase(Address))
-	    			founded.insert(contacts.retrieve());
-	    		contacts.findNext();
-	    	}
-	    	if(contacts.retrieve().getAddress().equalsIgnoreCase(Address))
-    			founded.insert(contacts.retrieve());
-	    	return founded;
-	    }
-	    private LinkedList<Contact> searchByBirthday(String Birthday) {
-	    	LinkedList<Contact> founded = new LinkedList<>();
-	    	if(contacts.empty())
-	    		return founded;
-	    	contacts.findFirst();
-	    	while(!contacts.last()) {
-	    		if(contacts.retrieve().getBirthday().equalsIgnoreCase(Birthday))
-	    			founded.insert(contacts.retrieve());
-	    		contacts.findNext();
-	    	}
-	    	if(contacts.retrieve().getBirthday().equalsIgnoreCase(Birthday))
-    			founded.insert(contacts.retrieve());
-	    	return founded;
-	    }
-	    
-		public void deleteContact(String name) {
-			if (contacts.empty()) {
-				System.out.println("Phonebook is empty.");
-				return;
-			}
-			contacts.findFirst();
-			while (!contacts.last()) {
-				if (contacts.retrieve().getName().equalsIgnoreCase(name)) {
-					contacts.remove();
-					System.out.println("Contact deleted successfully.");
-					return;
+					contacts.insert(contact);
 				}
-				contacts.findNext();
-			}
-			//This is for the last element
-			if (contacts.retrieve().getName().equalsIgnoreCase(name)) {
-				contacts.remove();
-				System.out.println("Contact deleted successfully.");
-				return;
-			}
-			System.out.println("Contact not found.");
-		}
+		
+		 public void searchContact(int criteria) {
+					String searchValue="";
+					LinkedList<Contact> founded;
+					Scanner input = new Scanner(System.in);
+					contacts.findFirst();
+					
+					switch (criteria) {
+					
+					case 1:
+						System.out.println("Enter the contact's name: ");
+						searchValue=input.nextLine();
+						input.close();
+					    founded=searchByName(searchValue);
+					    if(!founded.empty())
+					    	printAllContacts(founded);
+					    else
+					    	System.out.println("contact not found");
+						break;
+						
+					case 2:
+						System.out.println("Enter the contact's PhoneNumber: ");
+						searchValue=input.next();
+						input.close();
+						founded=searchByPhoneNumber(searchValue);
+					    if(!founded.empty())
+					    	printAllContacts(founded);
+					    else
+					    	System.out.println("contact not found");
+						break;
+						
+					case 3:
+						System.out.println("Enter the contact's EmailAddress: ");
+						searchValue=input.next();
+						input.close();
+						founded=searchByEmailAddress(searchValue);
+					    if(!founded.empty())
+					    	printAllContacts(founded);
+					    else
+					    	System.out.println("contact not found");
+						break;
+						
+					case 4:
+						System.out.println("Enter the contact's Address: ");
+						searchValue=input.nextLine();
+						input.close();
+						founded=searchByAddress(searchValue);
+					    if(!founded.empty())
+					    	printAllContacts(founded);
+					    else
+					    	System.out.println("contact not found");
+						break;
+						
+					case 5:
+						System.out.println("Enter the contact's Birthday: ");
+						searchValue=input.next();
+						input.close();
+						founded=searchByBirthday(searchValue);
+					    if(!founded.empty())
+					    	printAllContacts(founded);
+					    else
+					    	System.out.println("contact not found");
+						break;
+					default:
+						System.out.println("Invalid criteria");
+						input.close();
+						break;
+					}
+	
+				}
+			    
+				
+		public void deleteContact(String name) {
+					if (contacts.empty()) {
+						System.out.println("Phonebook is empty.");
+						return;
+					}
+					contacts.findFirst();
+					while (!contacts.last()) {
+						if (contacts.retrieve().getName().equalsIgnoreCase(name)) {
+							contacts.remove();
+							System.out.println("Contact deleted successfully.");
+							return;
+						}
+						contacts.findNext();
+					}
+					//This is for the last element
+					if (contacts.retrieve().getName().equalsIgnoreCase(name)) {
+						contacts.remove();
+						System.out.println("Contact deleted successfully.");
+						return;
+					}
+					System.out.println("Contact not found.");
+				}
+		
+		 public void printContactsByFirstName(String firstName) {
+		    	
+		    	LinkedList<Contact> founded = new LinkedList<>();
+		    	if(contacts.empty())
+		    		System.out.println("there are no contacts by this first name ");
+		    	contacts.findFirst();
+		    	firstName += " ";
+		    	while(!contacts.last()) {
+		    		if(contacts.retrieve().getName().startsWith(firstName))
+		    			founded.insert(contacts.retrieve());
+		    		contacts.findNext();
+		    	}
+		    	if(contacts.retrieve().getName().startsWith(firstName))
+	    			founded.insert(contacts.retrieve());
+		    	printAllContacts(founded);
+		    }
+		
+		 // -- helper methods for contact --
+		 
+		private void printAllContacts(LinkedList<Contact> list) {
+					if(list.empty())
+						return;
+					
+					list.findFirst();
+					if(list.last())
+						System.out.println("Contact found!\r\n");
+					else
+						System.out.println("Contacts found! \r\n");
+					while(!list.last()) {
+			    		list.retrieve().printInfo();
+						list.findNext();
+			    	}
+		    		list.retrieve().printInfo();
+				}
+				
+		
+	    private LinkedList<Contact> searchByName(String name) {
+			    	LinkedList<Contact> founded = new LinkedList<>();
+			    	if(contacts.empty())
+			    		return founded;
+			    	contacts.findFirst();
+			    	while(!contacts.last()) {
+			    		if(contacts.retrieve().getName().equalsIgnoreCase(name))
+			    			founded.insert(contacts.retrieve());
+			    		contacts.findNext();
+			    	}
+			    	if(contacts.retrieve().getName().equalsIgnoreCase(name))
+		    			founded.insert(contacts.retrieve());
+			    	return founded;
+			    }
+	    
+	    private LinkedList<Contact> searchByPhoneNumber(String PhoneNumber) {
+			    	LinkedList<Contact> founded = new LinkedList<>();
+			    	if(contacts.empty())
+			    		return founded;
+			    	contacts.findFirst();
+			    	while(!contacts.last()) {
+			    		if(contacts.retrieve().getPhoneNumber().equalsIgnoreCase(PhoneNumber))
+			    			founded.insert(contacts.retrieve());
+			    		contacts.findNext();
+			    	}
+			    	if(contacts.retrieve().getPhoneNumber().equalsIgnoreCase(PhoneNumber))
+		    			founded.insert(contacts.retrieve());
+			    	return founded;
+			    }
+	    
+	    private LinkedList<Contact> searchByEmailAddress(String EmailAddress) {
+			    	LinkedList<Contact> founded = new LinkedList<>();
+			    	if(contacts.empty())
+			    		return founded;
+			    	contacts.findFirst();
+			    	while(!contacts.last()) {
+			    		if(contacts.retrieve().getEmailAddress().equalsIgnoreCase(EmailAddress))
+			    			founded.insert(contacts.retrieve());
+			    		contacts.findNext();
+			    	}
+			    	if(contacts.retrieve().getEmailAddress().equalsIgnoreCase(EmailAddress))
+		    			founded.insert(contacts.retrieve());
+			    	return founded;
+			    }
+	    
+	    private LinkedList<Contact> searchByAddress(String Address) {
+			    	LinkedList<Contact> founded = new LinkedList<>();
+			    	if(contacts.empty())
+			    		return founded;
+			    	contacts.findFirst();
+			    	while(!contacts.last()) {
+			    		if(contacts.retrieve().getAddress().equalsIgnoreCase(Address))
+			    			founded.insert(contacts.retrieve());
+			    		contacts.findNext();
+			    	}
+			    	if(contacts.retrieve().getAddress().equalsIgnoreCase(Address))
+		    			founded.insert(contacts.retrieve());
+			    	return founded;
+			    }
+	    
+	    private LinkedList<Contact> searchByBirthday(String Birthday) {
+			    	LinkedList<Contact> founded = new LinkedList<>();
+			    	if(contacts.empty())
+			    		return founded;
+			    	contacts.findFirst();
+			    	while(!contacts.last()) {
+			    		if(contacts.retrieve().getBirthday().equalsIgnoreCase(Birthday))
+			    			founded.insert(contacts.retrieve());
+			    		contacts.findNext();
+			    	}
+			    	if(contacts.retrieve().getBirthday().equalsIgnoreCase(Birthday))
+		    			founded.insert(contacts.retrieve());
+			    	return founded;
+			    }
+			    
+	  // -- event method --
 	    
 	    public void scheduleEvent(Event event) {
-	    	// implement ...
+	    	// 1- event exist
+	    	// 2- no conflict
 		}
 	    
-	    public void printContactsByFirstName(String firstName) {
-	    	LinkedList<Contact> founded = new LinkedList<>();
-	    	if(contacts.empty())
-	    		System.out.println("there are no contacts by this first name ");
-	    	contacts.findFirst();
-	    	firstName += " ";
-	    	while(!contacts.last()) {
-	    		if(contacts.retrieve().getName().startsWith(firstName))
-	    			founded.insert(contacts.retrieve());
-	    		contacts.findNext();
-	    	}
-	    	if(contacts.retrieve().getName().startsWith(firstName))
-    			founded.insert(contacts.retrieve());
-	    	printAllContacts(founded);
-	    }
-	    
+	   public void PrintEventDetails() {
+		   //by contact name ( i think i will use eventuser from event class)
+		   //by event title 
+	   }
+	   
 	    public void printAllEventsAlphabetically(String ContactName) {
 			//Implement ..
 			if(contacts.empty())
@@ -213,10 +239,13 @@ public class Phonebook{
 				if(contacts.retrieve().getName().equalsIgnoreCase(ContactName)) {
 					
 				}
+			}
 					
 
 
 	    }
+
+		 // -- helper methods for event --
 
 	    private boolean contactExists(Contact contact) {
 	        return (searchByName(contact.getName()).empty() && searchByPhoneNumber(contact.getPhoneNumber()).empty());
@@ -227,6 +256,9 @@ public class Phonebook{
 	        return false;
 	    }
 	    
+		
+		// main
+    
 		public void menu() {
 			Scanner input = new Scanner(System.in);
 			int choice;
