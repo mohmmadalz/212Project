@@ -3,6 +3,7 @@ import java.util.Scanner;
 public class Phonebook{
 	    private LinkedList<Contact> contacts;
 		
+		
 	   
 		public Phonebook() {
 			contacts = new LinkedList<>();
@@ -161,7 +162,26 @@ public class Phonebook{
 	    }
 	    
 		public void deleteContact(String name) {
-			// implement ...
+			if (contacts.empty()) {
+				System.out.println("Phonebook is empty.");
+				return;
+			}
+			contacts.findFirst();
+			while (!contacts.last()) {
+				if (contacts.retrieve().getName().equalsIgnoreCase(name)) {
+					contacts.remove();
+					System.out.println("Contact deleted successfully.");
+					return;
+				}
+				contacts.findNext();
+			}
+			//This is for the last element
+			if (contacts.retrieve().getName().equalsIgnoreCase(name)) {
+				contacts.remove();
+				System.out.println("Contact deleted successfully.");
+				return;
+			}
+			System.out.println("Contact not found.");
 		}
 	    
 	    public void scheduleEvent(Event event) {
@@ -184,8 +204,18 @@ public class Phonebook{
 	    	printAllContacts(founded);
 	    }
 	    
-	    public void printAllEventsAlphabetically() {
-	    	// implement ...
+	    public void printAllEventsAlphabetically(String ContactName) {
+			//Implement ..
+			if(contacts.empty())
+				System.out.println("there are no contacts by this first name ");
+			contacts.findFirst();
+			while(!contacts.last()) {
+				if(contacts.retrieve().getName().equalsIgnoreCase(ContactName)) {
+					
+				}
+					
+
+
 	    }
 
 	    private boolean contactExists(Contact contact) {
@@ -197,10 +227,6 @@ public class Phonebook{
 	        return false;
 	    }
 	    
-	    private void deleteEventsWithContact(Contact contact) {
-	        // implement ...
-	    }
-		
 		public void menu() {
 			Scanner input = new Scanner(System.in);
 			int choice;

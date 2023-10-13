@@ -1,5 +1,5 @@
-public class Event {
-//hi Mo is here
+public class Event implements Comparable<Event> {
+    // hi Mo is here
     private String title;
     private String date;
     private String location;
@@ -10,28 +10,31 @@ public class Event {
         this.location = location;
         this.eventuser = contact;
         this.date = date;
-       
+
     }
 
     public String getTitle() {
-          return title;
-      }
-  
-      public String getDate() {
-          return date;
-      }
-  
-      public String getLocation() {
-          return location;
-      }
-  
-      public Contact getContact() {
-          return eventuser;
-      }
-    
+        return title;
+    }
 
-      public void addInfo (Event event){
-			System.out.println("Note: " + event.getTitle());
-			
-      }
+    public String getDate() {
+        return date;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public Contact getContact() {
+        return eventuser;
+    }
+
+    public int compareTo(Event otherEvent) {
+        return title.compareTo(otherEvent.title);
+    }
+
+    public void addInfo(Event event) {
+        System.out.println("Note: " + event.getTitle());
+
+    }
 }

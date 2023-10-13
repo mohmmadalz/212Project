@@ -1,3 +1,4 @@
+
 public class Contact implements Comparable<Contact> {
 	
 		private String name ;
@@ -20,8 +21,13 @@ public class Contact implements Comparable<Contact> {
 		}
 		
 		public Contact() {
-			super();
-			// TODO Auto-generated constructor stub
+			this.name = "";
+			this.phoneNumber = "";
+			this.emailAddress = "";
+			this.address = "";
+			this.birthday = null;
+			this.notes = "";
+			events = new LinkedList<Event>();
 		}
 	
 	
