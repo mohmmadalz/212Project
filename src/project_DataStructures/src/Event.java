@@ -33,8 +33,10 @@ public class Event implements Comparable<Event> {
         return title.compareTo(otherEvent.title);
     }
 
-    public void addInfo(Event event) {
-        System.out.println("Note: " + event.getTitle());
-
+       public void addInfo(Event event) {
+        System.out.println("Event title: " + event.getTitle());
+        System.out.println("Contact name: " + eventuser);
+        System.out.println("Event date and time (MM/DD/YYYY HH:MM):  " + event.location + event.time );
+        System.out.println("Event location: " + event.location);
     }
 }
