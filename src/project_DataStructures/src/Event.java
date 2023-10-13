@@ -4,12 +4,14 @@ public class Event implements Comparable<Event> {
     private String date;
     private String location;
     private Contact eventuser;
+    private String time ;
 
-    public Event(String title, String date, String location, Contact contact) {
+    public Event(String title, String date, String location, String time Contact contact) {
         this.title = title;
         this.location = location;
         this.eventuser = contact;
         this.date = date;
+        this.time = time;
 
     }
 
@@ -28,6 +30,11 @@ public class Event implements Comparable<Event> {
     public Contact getContact() {
         return eventuser;
     }
+     
+
+    public String getTime() {
+		return time;
+	}
 
     public int compareTo(Event otherEvent) {
         return title.compareTo(otherEvent.title);
