@@ -284,16 +284,32 @@ public class Phonebook{
 
 
 	    }
+			public void addEventToContact(String name, Event event) {
+				LinkedList<Contact> founded = searchByName(name);
+				if (!founded.empty()) {
+					Contact contact = founded.retrieve();
+					if (contactExists(contact)) {
+						if (!eventConflictExists(event)) {
+							contact.getEvents().insert(event);
+						} else {
+							System.out.println("Event conflict exists.");
+						}
+					} else {
+						System.out.println("Contact not found.");
+					}
+				} else {
+					System.out.println("Contact not found.");
+				}
+			}
+			 // -- helper methods for event --
 
-		 // -- helper methods for event --
-
-	    private boolean contactExists(Contact contact) {
-	        return (searchByName(contact.getName()).empty() && searchByPhoneNumber(contact.getPhoneNumber()).empty());
-	    }
+		    private boolean contactExists(Contact contact) {
+		        return (searchByName(contact.getName()).empty() && searchByPhoneNumber(contact.getPhoneNumber()).empty());
+		    }
 	    
 	    private boolean eventConflictExists(Event newEvent) {
 
-	    	// implement ...
+	    	
 	        return false;
 	    }
 	    
