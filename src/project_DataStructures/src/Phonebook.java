@@ -221,14 +221,54 @@ public class Phonebook{
 	  // -- event method --
 	    
 	    public void scheduleEvent(Event event) {
+		
+
+
 	    	// 1- event exist
 	    	// 2- no conflict
 		}
 	    
-	   public void PrintEventDetails() {
-		   //by contact name ( i think i will use eventuser from event class)
-		   //by event title 
-	   }
+	public void PrintEventDetails(String contactName, String eventTitle) {
+		// Search for the contact by name
+		LinkedList<Contact> contactsByName = searchByName(contactName);
+		if (contactsByName.empty()) {
+			System.out.println("No contacts found with the name " + contactName);
+			return;
+		}
+
+		// Search for the event by title within the contacts found
+		Contact contact = contactsByName.retrieve();
+		LinkedList<Event> events = contact.getEvents();
+		if (events.empty()) {
+			System.out.println("No events found for " + contactName);
+			return;
+		}
+
+		events.findFirst();
+		while (!events.last()) {
+			Event event = events.retrieve();
+			if (event.getTitle().equalsIgnoreCase(eventTitle)) {
+				System.out.println("Event details for " + contactName + " - " + eventTitle);
+				System.out.println("Date: " + event.getDate());
+				System.out.println("Time: " + event.getTime());
+				System.out.println("Location: " + event.getLocation());
+				return;
+			}
+			events.findNext();
+		}
+
+		// Check the last event in the list
+		Event event = events.retrieve();
+		if (event.getTitle().equalsIgnoreCase(eventTitle)) {
+			System.out.println("Event details for " + contactName + " - " + eventTitle);
+			System.out.println("Date: " + event.getDate());
+			System.out.println("Time: " + event.getTime());
+			System.out.println("Location: " + event.getLocation());
+			return;
+		}
+
+		System.out.println("No events found with the title " + eventTitle + " for " + contactName);
+	}
 	   
 	    public void printAllEventsAlphabetically(String ContactName) {
 			//Implement ..
@@ -252,6 +292,7 @@ public class Phonebook{
 	    }
 	    
 	    private boolean eventConflictExists(Event newEvent) {
+
 	    	// implement ...
 	        return false;
 	    }
