@@ -56,7 +56,7 @@
 	        return title.compareTo(otherEvent.title);
 	    }
 	
-	       public void addInfo(Event event) {
+	       public void printInfo(Event event) {
 	        System.out.println("Event title: " + event.getTitle());
 	        System.out.println("Contact name: " + eventuser);
 	        System.out.println("Event date and time (MM/DD/YYYY HH:MM):  " + event.date );
