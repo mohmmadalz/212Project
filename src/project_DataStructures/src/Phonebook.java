@@ -256,12 +256,12 @@ public class Phonebook{
 			return;
 		Events.findFirst();
 		while(!Events.last()) {
-			if( Events.retrieve().getEventuser().equals(name) ) 
+			if( Events.retrieve().getEventuser().getName().equalsIgnoreCase(name) ) 
 				Events.remove();	
 			Events.findNext();
 		}
-		if( Events.retrieve().getEventuser().equals(name) ) 
-			Events.remove();
+			if( Events.retrieve().getEventuser().getName().equalsIgnoreCase(name) ) 
+				Events.remove();
 	}
 
 
