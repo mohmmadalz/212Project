@@ -7,9 +7,9 @@ public class Contact implements Comparable<Contact> {
 		private String address ;
 		private String birthday ;
 		private String notes ;
-		private LinkedList<Event> events;
 		
-		public Contact(String name, String phoneNumber, String emailAddress, String address, String birthday,String notes, LinkedList<Event> events){
+		
+		public Contact(String name, String phoneNumber, String emailAddress, String address, String birthday,String notes){
 	
 			this.name = name;
 			this.phoneNumber = phoneNumber;
@@ -17,7 +17,7 @@ public class Contact implements Comparable<Contact> {
 			this.address = address;
 			this.birthday = birthday;
 			this.notes = notes;
-			this.events=events;
+			
 		}
 		
 		public Contact() {
@@ -27,7 +27,7 @@ public class Contact implements Comparable<Contact> {
 			this.address = "";
 			this.birthday = null;
 			this.notes = "";
-			events = new LinkedList<Event>();
+			
 		}
 	
 	
@@ -79,13 +79,7 @@ public class Contact implements Comparable<Contact> {
 			this.notes = notes;
 		}
 		
-		 public LinkedList<Event> getEvents() {
-			return events;
-		}
-
-		public void setEvents(LinkedList<Event> events) {
-			this.events = events;
-		}
+		
 
 		@Override
 		    public int compareTo(Contact otherContact) {
