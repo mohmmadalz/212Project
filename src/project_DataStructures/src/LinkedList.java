@@ -1,3 +1,5 @@
+package project_DataStructures.src;
+
 public class LinkedList<T extends Comparable<T>> implements List<T> {
 	// for contact
 	private Node<T> head;
@@ -35,34 +37,6 @@ public class LinkedList<T extends Comparable<T>> implements List<T> {
 		current.data = val;
 	}
 
-	// public void insert(T val) {
-
-	// 	Node<T> newNode = new Node<T>(val);
-
-	// 	if (empty()) {
-	// 		current = head = newNode;
-	// 	} else {
-	// 		// Traverse the linked list to find the correct position to insert the new
-	// 		// element
-	// 		Node<T> prev = null;
-	// 		Node<T> curr = head;
-	// 		while (curr != null && curr.data.compareTo(val) < 0) {
-	// 			prev = curr;
-	// 			curr = curr.next;
-	// 		}
-
-	// 		// Insert the new element before the element that is greater than it
-	// 		if (prev == null) {
-	// 			newNode.next = head;
-	// 			head = newNode;
-	// 		} else {
-	// 			prev.next = newNode;
-	// 			newNode.next = curr;
-	// 		}
-
-	// 		current = newNode;
-	// 	}
-	// }
 	public void insert (T val) {
 		Node<T> tmp;
 		if (empty()) {
@@ -97,15 +71,15 @@ public class LinkedList<T extends Comparable<T>> implements List<T> {
 			current = current.next;
 	}
 
-	// implement method to search if this contact is exist before.
-	public T search(T value) {
+	public Boolean find(T value) {
 		Node<T> tmp = head;
 		while (tmp != null) {
 			if (tmp.data.equals(value)) {
-				return (T) tmp.data;
+				current=tmp;
+				return true;
 			}
 			tmp = tmp.next;
 		}
-		return null;
+		return false;
 	}
 }
