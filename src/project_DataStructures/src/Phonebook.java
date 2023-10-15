@@ -95,7 +95,8 @@ public class Phonebook{
 					contacts.findFirst();
 					while (!contacts.last()) {
 						if (contacts.retrieve().getName().equalsIgnoreCase(name)) {
-							contacts.remove();
+							contacts.remove();											// contact reomved successfule
+							deleteContactEvents(name);
 							System.out.println("Contact deleted successfully.");
 							return;
 						}
@@ -223,6 +224,19 @@ public class Phonebook{
 	private boolean contactExists(Contact contact) {
 		        return (searchByName(contact.getName()).empty() && searchByPhoneNumber(contact.getPhoneNumber()).empty());
 		    }
+	
+	private void deleteContactEvents (String name) {
+	    	if(Events.empty())
+	    		return;
+	    		
+	    	Events.findFirst();
+	    	while(!Events.last()) {
+				if( Events.retrieve().getEventuser().equals(name) ) 
+					Events.remove();	
+					Events.findNext();
+	    		}
+	    }
+	    
 			    
 	  // -- event method --
 	    
@@ -282,29 +296,10 @@ public class Phonebook{
 			while(!Events.last()) {
 				Events.retrieve().printInfo();
 				 Events.findNext();
-			}
-
-					
-
+			}	
 
 	    }
-			public void addEventToContact(String name, Event event) {
-				LinkedList<Contact> founded = searchByName(name);
-				if (!founded.empty()) {
-					Contact contact = founded.retrieve();
-					if (contactExists(contact)) {
-						if (!eventConflictExists(event)) {
-							contact.getEvents().insert(event);
-						} else {
-							System.out.println("Event conflict exists.");
-						}
-					} else {
-						System.out.println("Contact not found.");
-					}
-				} else {
-					System.out.println("Contact not found.");
-				}
-			}
+			
 	
 			 // -- helper methods for event --
 
