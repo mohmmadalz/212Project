@@ -1,4 +1,3 @@
-package project_DataStructures.src; 
 import java.util.Scanner;
 public class Phonebook{
 	private LinkedList<Contact> contacts;
@@ -50,8 +49,8 @@ public class Phonebook{
 		case 1:
 			System.out.println("Enter the contact's name: ");
 			searchValue=input.nextLine();
-			input.close();
 			Contact contactByName=searchByName(searchValue);
+			input.close();
 			if(contactByName != null)
 				contactByName.printInfo();
 			else
@@ -248,7 +247,7 @@ public class Phonebook{
 		return founded;
 	}
 	private boolean contactExists(Contact contact) {
-		return (searchByName(contact.getName()) ==null && searchByPhoneNumber(contact.getPhoneNumber()) ==null);
+		return (searchByName(contact.getName()) !=null && searchByPhoneNumber(contact.getPhoneNumber()) !=null);
 	}
 
 	private void deleteContactEvents (String name) {
@@ -414,15 +413,17 @@ public class Phonebook{
 					+ "\nEnter your choice:";
 			System.out.println(menu);
 			choice= input.nextInt();
+			input.nextLine();
 			switch (choice) {
 			case 1: {
 				Contact contact = new Contact();
 				System.out.println("\nEnter the contact's name: ");
 				contact.setName(input.nextLine());
-				System.out.println("Enter the contact's phone number: ");
+				System.out.println("\nEnter the contact's phone number: ");
 				contact.setPhoneNumber(input.next());
 				System.out.println("Enter the contact's email address: ");
 				contact.setEmailAddress(input.next());
+				contact.setName(input.nextLine());
 				System.out.println("Enter the contact's address: ");
 				contact.setAddress(input.nextLine());
 				System.out.println("Enter the contact's birthday: ");
@@ -455,6 +456,7 @@ public class Phonebook{
 			}
 			case 4: {
 				scheduleEvent();
+				break;
 			}
 			case 5: {
 				System.out.println("Enter search criteria:\r\n"
@@ -463,19 +465,24 @@ public class Phonebook{
 						+ "Enter your choice:");
 				int criteria=input.nextInt();
 				PrintEventDetails(criteria);
+				break;
 			}
 			case 6: {
 				System.out.println("Enter the first name: ");
 				printContactsByFirstName(input.nextLine());
+				break;
 			}
 			case 7: {
 				printAllEventsAlphabetically();
+				break;
 			}
 			case 8: {
 				System.out.println("Goodbye!");
+				break;
 			}
 			default:
 				System.out.println("invalid input!");;
+				break;
 			}
 		} while(choice != 8);
 
