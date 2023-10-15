@@ -35,32 +35,44 @@ public class LinkedList<T extends Comparable<T>> implements List<T> {
 		current.data = val;
 	}
 
-	public void insert(T val) {
+	// public void insert(T val) {
 
-		Node<T> newNode = new Node<T>(val);
+	// 	Node<T> newNode = new Node<T>(val);
 
+	// 	if (empty()) {
+	// 		current = head = newNode;
+	// 	} else {
+	// 		// Traverse the linked list to find the correct position to insert the new
+	// 		// element
+	// 		Node<T> prev = null;
+	// 		Node<T> curr = head;
+	// 		while (curr != null && curr.data.compareTo(val) < 0) {
+	// 			prev = curr;
+	// 			curr = curr.next;
+	// 		}
+
+	// 		// Insert the new element before the element that is greater than it
+	// 		if (prev == null) {
+	// 			newNode.next = head;
+	// 			head = newNode;
+	// 		} else {
+	// 			prev.next = newNode;
+	// 			newNode.next = curr;
+	// 		}
+
+	// 		current = newNode;
+	// 	}
+	// }
+	public void insert (T val) {
+		Node<T> tmp;
 		if (empty()) {
-			current = head = newNode;
-		} else {
-			// Traverse the linked list to find the correct position to insert the new
-			// element
-			Node<T> prev = null;
-			Node<T> curr = head;
-			while (curr != null && curr.data.compareTo(val) < 0) {
-				prev = curr;
-				curr = curr.next;
-			}
-
-			// Insert the new element before the element that is greater than it
-			if (prev == null) {
-				newNode.next = head;
-				head = newNode;
-			} else {
-				prev.next = newNode;
-				newNode.next = curr;
-			}
-
-			current = newNode;
+			current = head = new Node<T> (val);
+		}
+		else {
+			tmp = current.next;
+			current.next = new Node<T> (val);
+			current = current.next;
+			current.next = tmp;
 		}
 	}
 
