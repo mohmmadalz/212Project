@@ -288,7 +288,7 @@ public class Phonebook{
 	private void addEvent(Event tmp) {
 		if(Events.empty()) {
 			Events.insert(tmp);
-			System.out.println("Event scheduled successfully!");
+			System.out.println("Event scheduled successfully! 1");
 			return;
 		}
 		Events.findFirst();
@@ -297,7 +297,7 @@ public class Phonebook{
 			if(Events.retrieve().compareTo(tmp)>0) {
 				Events.find(prev);
 				Events.insert(tmp);
-				System.out.println("Event scheduled successfully!");
+				System.out.println("Event scheduled successfully! 2");
 				return;
 			}
 		prev=Events.retrieve();
@@ -306,12 +306,12 @@ public class Phonebook{
 		if(Events.retrieve().compareTo(tmp)>0) {
 			Events.find(prev);
 			Events.insert(tmp);
-			System.out.println("Event scheduled successfully!");
+			System.out.println("Event scheduled successfully! 3");
 			return;
 		}
 		else {
 			Events.insert(tmp);
-			System.out.println("Event scheduled successfully!");
+			System.out.println("Event scheduled successfully! 4");
 		}
 	}
 	
