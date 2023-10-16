@@ -50,7 +50,6 @@ public class Phonebook{
 			System.out.println("Enter the contact's name: ");
 			searchValue=input.nextLine();
 			Contact contactByName=searchByName(searchValue);
-			input.close();
 			if(contactByName != null)
 				contactByName.printInfo();
 			else
@@ -60,7 +59,6 @@ public class Phonebook{
 		case 2:
 			System.out.println("Enter the contact's PhoneNumber: ");
 			searchValue=input.next();
-			input.close();
 			Contact contactByPhoneNumber=searchByPhoneNumber(searchValue);
 			if(contactByPhoneNumber != null)
 				contactByPhoneNumber.printInfo();
@@ -71,7 +69,6 @@ public class Phonebook{
 		case 3:
 			System.out.println("Enter the contact's EmailAddress: ");
 			searchValue=input.next();
-			input.close();
 			founded=searchByEmailAddress(searchValue);
 			if(!founded.empty())
 				printAllContacts(founded);
@@ -82,7 +79,6 @@ public class Phonebook{
 		case 4:
 			System.out.println("Enter the contact's Address: ");
 			searchValue=input.nextLine();
-			input.close();
 			founded=searchByAddress(searchValue);
 			if(!founded.empty())
 				printAllContacts(founded);
@@ -93,7 +89,6 @@ public class Phonebook{
 		case 5:
 			System.out.println("Enter the contact's Birthday: ");
 			searchValue=input.next();
-			input.close();
 			founded=searchByBirthday(searchValue);
 			if(!founded.empty())
 				printAllContacts(founded);
@@ -102,7 +97,6 @@ public class Phonebook{
 			break;
 		default:
 			System.out.println("Invalid criteria");
-			input.close();
 			break;
 		}
 
@@ -247,7 +241,7 @@ public class Phonebook{
 		return founded;
 	}
 	private boolean contactExists(Contact contact) {
-		return (searchByName(contact.getName()) !=null && searchByPhoneNumber(contact.getPhoneNumber()) !=null);
+		return (searchByName(contact.getName()) !=null || searchByPhoneNumber(contact.getPhoneNumber()) !=null);
 	}
 
 	private void deleteContactEvents (String name) {
@@ -287,7 +281,6 @@ public class Phonebook{
 		else {
 			System.out.println("Event Scheduling failed ");
 		}
-		input.close();
 	}
 	
 	private void addEvent(Event tmp) {
@@ -326,7 +319,6 @@ public class Phonebook{
 		Scanner input = new Scanner(System.in);
 		if(Events.empty()) {
 			System.out.println("Event not found!");
-			input.close();
 			return ;
 		}
 		switch (criteria) {
@@ -361,7 +353,6 @@ public class Phonebook{
 		default:
 			System.out.println("invalid input");
 		}
-		input.close();
 	}
 
 	public void printAllEventsAlphabetically() {
@@ -423,8 +414,8 @@ public class Phonebook{
 				contact.setPhoneNumber(input.next());
 				System.out.println("Enter the contact's email address: ");
 				contact.setEmailAddress(input.next());
-				contact.setName(input.nextLine());
 				System.out.println("Enter the contact's address: ");
+				contact.setAddress(input.nextLine());
 				contact.setAddress(input.nextLine());
 				System.out.println("Enter the contact's birthday: ");
 				contact.setBirthday(input.next());
