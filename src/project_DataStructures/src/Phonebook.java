@@ -115,8 +115,8 @@ public class Phonebook{
 		contacts.findFirst();
 		while (!contacts.last()) {
 			if (contacts.retrieve().getName().equalsIgnoreCase(name)) {
-				contacts.remove();											// contact removed successfully
 				deleteContactEvents(name);
+				contacts.remove();											// contact removed successfully
 				System.out.println("Contact deleted successfully.");
 				return;
 			}
@@ -124,8 +124,8 @@ public class Phonebook{
 		}
 		//This is for the last element
 		if (contacts.retrieve().getName().equalsIgnoreCase(name)) {
-			contacts.remove();
 			deleteContactEvents(name);
+			contacts.remove();
 			System.out.println("Contact deleted successfully.");
 			return;
 		}
@@ -249,8 +249,10 @@ public class Phonebook{
 			return;
 		Events.findFirst();
 		while(!Events.last()) {
-			if( Events.retrieve().getEventuser().getName().equalsIgnoreCase(name) ) 
-				Events.remove();	
+			if( Events.retrieve().getEventuser().getName().equalsIgnoreCase(name) ) {
+				Events.remove();
+				continue;
+			}
 			Events.findNext();
 		}
 			if( Events.retrieve().getEventuser().getName().equalsIgnoreCase(name) ) 
@@ -413,15 +415,15 @@ public class Phonebook{
 			input.nextLine();
 			}
 			catch (Exception e) {
-				System.out.println("\ninvalid input!\n");
-				choice=8;
+				choice=9;
+				input.next();
 			}
 			switch (choice) {
 			case 1: {
 				Contact contact = new Contact();
 				System.out.print("\nEnter the contact's name: ");
 				contact.setName(input.nextLine());
-				System.out.print("\nEnter the contact's phone number: ");
+				System.out.print("Enter the contact's phone number: ");
 				contact.setPhoneNumber(input.next());
 				System.out.print("Enter the contact's email address: ");
 				contact.setEmailAddress(input.next());
@@ -448,8 +450,13 @@ public class Phonebook{
 						+ "4. Address\r\n"
 						+ "5. Birthday\r\n"
 						+ "\nEnter your choice: ");
-				int criteria=input.nextInt();
-				searchContact(criteria);
+				try {
+					int criteria=input.nextInt();
+					searchContact(criteria);
+				} catch (Exception e) {
+					break;
+				}
+				
 			}
 			break;
 			case 3: {
