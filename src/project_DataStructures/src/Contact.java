@@ -1,5 +1,3 @@
-package project_DataStructures.src;
-
 public class Contact implements Comparable<Contact> {
 	
 		private String name ;
@@ -93,7 +91,7 @@ public class Contact implements Comparable<Contact> {
 			System.out.println("Phone number: " + phoneNumber);
 			System.out.println("Email addres: " + emailAddress);
 			System.out.println("Address: " + address);
-			System.out.println("Birthday: " + birthday);
+			System.out.println("Birthday: " + birthday+"\n");
 		
 		}	
 		
