@@ -286,6 +286,7 @@ public class Phonebook{
 	private void addEvent(Event tmp) {
 		if(Events.empty()) {
 			Events.insert(tmp);
+			System.out.println("Event scheduled successfully!");
 			return;
 		}
 		Events.findFirst();
@@ -316,14 +317,16 @@ public class Phonebook{
 	public void PrintEventDetails(int criteria) {
 		//by contact name pos1
 		//by event title  
+		
 		Scanner input = new Scanner(System.in);
 		if(Events.empty()) {
 			System.out.println("Event not found!");
 			return ;
 		}
+		Events.findFirst();
 		switch (criteria) {
 		case 1: {
-			System.out.println("Enter the contact's name: ");
+			System.out.print("Enter the contact's name: ");
 			String contactName= input.nextLine();
 			
 			System.out.println();
@@ -331,6 +334,7 @@ public class Phonebook{
 				if(Events.retrieve().getEventuser().getName().equalsIgnoreCase(contactName)) {
 					Events.retrieve().printInfo();
 				}
+				Events.findNext();
 			}
 			if(Events.retrieve().getEventuser().getName().equalsIgnoreCase(contactName)) {
 				Events.retrieve().printInfo();
@@ -338,12 +342,13 @@ public class Phonebook{
 			break;
 		}
 		case 2: {
-			System.out.println("Enter the event title: ");
+			System.out.print("Enter the event title: ");
 			String eventTitle= input.nextLine();
 			while(!Events.last()) {
 				if(Events.retrieve().getTitle().equalsIgnoreCase(eventTitle)) {
 					Events.retrieve().printInfo();
 				}
+				Events.findNext();
 			}
 			if(Events.retrieve().getTitle().equalsIgnoreCase(eventTitle)) {
 				Events.retrieve().printInfo();
@@ -389,7 +394,7 @@ public class Phonebook{
 
 	public void menu() {
 		Scanner input = new Scanner(System.in);
-		int choice;
+		int choice = 0;
 		do {
 			String menu="Welcome to the Linked Tree Phonebook!\r\n"
 					+ "Please choose an option:\r\n"
@@ -402,24 +407,31 @@ public class Phonebook{
 					+ "7. Print all events alphabetically\r\n"
 					+ "8. Exit\r\n"
 					+ "\nEnter your choice:";
-			System.out.println(menu);
+			System.out.print(menu);
+			try {
 			choice= input.nextInt();
 			input.nextLine();
+			}
+			catch (Exception e) {
+				System.out.println("\ninvalid input!\n");
+				choice=8;
+			}
 			switch (choice) {
 			case 1: {
 				Contact contact = new Contact();
-				System.out.println("\nEnter the contact's name: ");
+				System.out.print("\nEnter the contact's name: ");
 				contact.setName(input.nextLine());
-				System.out.println("\nEnter the contact's phone number: ");
+				System.out.print("\nEnter the contact's phone number: ");
 				contact.setPhoneNumber(input.next());
-				System.out.println("Enter the contact's email address: ");
+				System.out.print("Enter the contact's email address: ");
 				contact.setEmailAddress(input.next());
-				System.out.println("Enter the contact's address: ");
+				System.out.print("Enter the contact's address: ");
 				contact.setAddress(input.nextLine());
 				contact.setAddress(input.nextLine());
-				System.out.println("Enter the contact's birthday: ");
+				System.out.print("Enter the contact's birthday: ");
 				contact.setBirthday(input.next());
-				System.out.println("Enter any notes for the contact: ");
+				input.nextLine();
+				System.out.print("Enter any notes for the contact: ");
 				contact.setNotes(input.nextLine());
 				if(!contactExists(contact)) {
 					System.out.println("\nContact added successfully!\n");
@@ -429,7 +441,7 @@ public class Phonebook{
 				break;
 			}
 			case 2: {
-				System.out.println("Enter search criteria:\r\n"
+				System.out.print("Enter search criteria:\r\n"
 						+ "1. Name\r\n"
 						+ "2. Phone Number\r\n"
 						+ "3. Email Address\r\n"
@@ -441,7 +453,7 @@ public class Phonebook{
 			}
 			break;
 			case 3: {
-				System.out.println("Enter the contact's name:");
+				System.out.print("Enter the contact's name:");
 				deleteContact(input.nextLine());
 				break;
 			}
@@ -450,7 +462,7 @@ public class Phonebook{
 				break;
 			}
 			case 5: {
-				System.out.println("Enter search criteria:\r\n"
+				System.out.print("Enter search criteria:\r\n"
 						+ "1. contact name\r\n"
 						+ "2. Event tittle\r\n"
 						+ "Enter your choice:");
@@ -459,7 +471,7 @@ public class Phonebook{
 				break;
 			}
 			case 6: {
-				System.out.println("Enter the first name: ");
+				System.out.print("Enter the first name: ");
 				printContactsByFirstName(input.nextLine());
 				break;
 			}
@@ -468,15 +480,14 @@ public class Phonebook{
 				break;
 			}
 			case 8: {
-				System.out.println("Goodbye!");
+				System.out.print("Goodbye!");
 				break;
 			}
 			default:
-				System.out.println("invalid input!");;
+				System.out.println("\ninvalid input! try again \n");;
 				break;
 			}
 		} while(choice != 8);
-
 
 		input.close();
 	}
