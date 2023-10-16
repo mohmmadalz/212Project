@@ -57,10 +57,10 @@ public class Event implements Comparable<Event> {
     public int compareTo(Event otherEvent) {
         return this.title.compareTo(otherEvent.title);
     }
-	public void printInfo() {
-		System.out.println("Event title: " + getTitle());
-		System.out.println("Contact name: " + eventuser.getName());
-		System.out.println("Event date and time (MM/DD/YYYY HH:MM):  " + date );
-		System.out.println("Event location: " + location);
+	public String Info() {
+		return("\nEvent title: " + getTitle()+
+		"\nContact name: " + eventuser.getName()+
+		"\nEvent date and time (MM/DD/YYYY HH:MM):  " + date +
+		"\nEvent location: " + location+"\n");
 	}
 }
