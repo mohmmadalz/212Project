@@ -1,5 +1,3 @@
-package project_DataStructures.src;
-
 public class LinkedList<T extends Comparable<T>> implements List<T> {
 	// for contact
 	private Node<T> head;
