@@ -1,5 +1,3 @@
-package project_DataStructures.src;
-
 public class Event implements Comparable<Event> {
 	private String title;
 	private String date;
@@ -55,10 +53,10 @@ public class Event implements Comparable<Event> {
 	}
 
 
-	public int compareTo(Event otherEvent) {
-		return title.compareTo(otherEvent.title);
-	}
-
+	@Override
+    public int compareTo(Event otherEvent) {
+        return this.title.compareTo(otherEvent.title);
+    }
 	public void printInfo() {
 		System.out.println("Event title: " + getTitle());
 		System.out.println("Contact name: " + eventuser.getName());
