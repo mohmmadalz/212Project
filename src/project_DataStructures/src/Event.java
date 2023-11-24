@@ -54,13 +54,13 @@ public class Event implements Comparable<Event> {
 
 
 	@Override
-    public int compareTo(Event otherEvent) {
-        return this.title.compareTo(otherEvent.title);
-    }
+	public int compareTo(Event otherEvent) {
+		return this.title.compareTo(otherEvent.title);
+	}
 	public String Info() {
 		return("\nEvent title: " + getTitle()+
-		"\nContact name: " + eventuser.getName()+
-		"\nEvent date and time (MM/DD/YYYY HH:MM):  " + date +
-		"\nEvent location: " + location+"\n");
+				"\nContact name: " + eventuser.getName()+
+				"\nEvent date and time (MM/DD/YYYY HH:MM):  " + date +
+				"\nEvent location: " + location+"\n");
 	}
 }
