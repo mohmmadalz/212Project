@@ -38,7 +38,7 @@ public class Phonebook{
 			return;
 		}
 	}
-		
+
 	public void searchContact(int criteria) {
 		String searchValue="";
 		LinkedList<Contact> founded;
@@ -130,7 +130,7 @@ public class Phonebook{
 			System.out.print("\nContact deleted successfully.");
 			return;
 		}
-		
+
 	}
 
 	public void printContactsByFirstName(String firstName) {
@@ -139,7 +139,7 @@ public class Phonebook{
 		if(contacts.empty())
 			System.out.println("\nthere are no contacts by this first name ");
 		contacts.findFirst();
-		firstName += " ";
+		firstName += " "; //
 		while(!contacts.last()) {
 			if(contacts.retrieve().getName().startsWith(firstName))
 				founded.insert(contacts.retrieve());
@@ -256,8 +256,8 @@ public class Phonebook{
 			}
 			Events.findNext();
 		}
-			if( Events.retrieve().getEventuser().getName().equalsIgnoreCase(name) ) 
-				Events.remove();
+		if( Events.retrieve().getEventuser().getName().equalsIgnoreCase(name) ) 
+			Events.remove();
 	}
 
 
@@ -285,7 +285,7 @@ public class Phonebook{
 			System.out.println("\nEvent Scheduling failed ");
 		}
 	}
-	
+
 	private void addEvent(Event tmp) {
 		Event nullEvent = new Event("", "", "", null);
 		if(Events.empty()) {
@@ -303,7 +303,7 @@ public class Phonebook{
 				System.out.println("\nEvent scheduled successfully!");
 				return;
 			}
-		prev=Events.retrieve();
+			prev=Events.retrieve();
 			Events.findNext();
 		}
 		if(Events.retrieve().compareTo(tmp)>0) {
@@ -317,12 +317,12 @@ public class Phonebook{
 			System.out.println("\nEvent scheduled successfully!");
 		}
 	}
-	
-		
+
+
 	public void PrintEventDetails(int criteria) {
 		//by contact name pos1
 		//by event title  
-		
+
 		Scanner input = new Scanner(System.in);
 		if(Events.empty()) {
 			System.out.println("\nEvent not found!");
@@ -375,7 +375,7 @@ public class Phonebook{
 	}
 
 	public void printAllEventsAlphabetically() {
-		
+
 		if(Events.empty())
 			return;
 		String result="";
@@ -428,8 +428,8 @@ public class Phonebook{
 					+ "\nEnter your choice:";
 			System.out.print(menu);
 			try {
-			choice= input.nextInt();
-			input.nextLine();
+				choice= input.nextInt();
+				input.nextLine();
 			}
 			catch (Exception e) {
 				choice=9;
@@ -476,7 +476,7 @@ public class Phonebook{
 					input.next();
 					break;
 				}
-				
+
 			}
 			break;
 			case 3: {
@@ -494,9 +494,9 @@ public class Phonebook{
 						+ "2. Event tittle\r\n"
 						+ "Enter your choice:");
 				try{
-				int criteria=input.nextInt();
-				PrintEventDetails(criteria);
-				break;
+					int criteria=input.nextInt();
+					PrintEventDetails(criteria);
+					break;
 				}
 				catch (Exception e2) {
 					System.out.println("\ninvalid input!\n");
