@@ -1,4 +1,4 @@
-public class LinkedList<T extends Comparable<T>> implements List<T> {
+public class LinkedList<T> implements List<T> {
 	// for contact
 	private Node<T> head;
 	private Node<T> current;
