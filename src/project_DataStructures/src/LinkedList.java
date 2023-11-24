@@ -1,5 +1,5 @@
-public class LinkedList<T> implements List<T> {
-	// for Event
+public class LinkedList<T>  {
+	// for event
 	private Node<T> head;
 	private Node<T> current;
 
