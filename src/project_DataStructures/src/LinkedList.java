@@ -1,5 +1,5 @@
 public class LinkedList<T> implements List<T> {
-	// for contact
+	// for Event
 	private Node<T> head;
 	private Node<T> current;
 
