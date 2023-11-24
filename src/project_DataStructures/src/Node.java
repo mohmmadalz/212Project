@@ -6,7 +6,7 @@ public class Node<T> {
 	  
 	public Node() {  
 	    data=null;  
-	    next=null;  
+	    next=null;   
 	}  
 	  
 	  
