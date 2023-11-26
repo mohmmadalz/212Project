@@ -29,6 +29,13 @@ public class Phonebook{
 		
 	}
 
+	// -- Helper methods for concatct --
+
+	public boolean contactExists(Contact contact){
+		// using inorder travesal
+
+	}
+
 	// -- event method --
 
 	public void scheduleEvent() {
@@ -143,6 +150,7 @@ public class Phonebook{
 	}
 
 	public void printAllEventsAlphabetically() {
+		//CHANGE THE METHOD TO PRINT APPOINTMENTS TOO
 
 		if(Events.empty())
 			return;
@@ -156,6 +164,12 @@ public class Phonebook{
 		result+=Events.retrieve().Info();
 		System.out.println(result);
 	}
+
+	
+	public void printAllEventsAndAppointments() {
+		//ONLY IF THEY SHARE THE FIRST NAME
+	}
+		//
 
 
 	// -- helper methods for event --
