@@ -1,37 +1,40 @@
 import java.util.Scanner;
-public class Phonebook{
-	private BST<Contact> contacts;
-	private LinkedList<Event> Events ;
 
+public class Phonebook {
+	private BST<Contact> contacts;
+	private LinkedList<Event> Events;
 
 	public Phonebook() {
 		contacts = new BST<>();
 		Events = new LinkedList<>();
 
 	}
-//
+	//
 
-	public void addContact() {
-		
+	public boolean addContact(Contact contact) {
+		boolean flag = contacts.insert(contact.getName(), contact);
+		if (!flag) {
+			return false;
+		}
+		return true;
+
 	}
 
 	public void searchContact() {
-	
+
 	}
 
-
 	public void deleteContact() {
-		
+
 	}
 
 	public void printContactsByFirstName() {
 
-		
 	}
 
 	// -- Helper methods for concatct --
 
-	public boolean contactExists(Contact contact){
+	public boolean contactExists(Contact contact) {
 		// using inorder travesal
 
 	}
@@ -53,143 +56,137 @@ public class Phonebook{
 		System.out.print("Enter event location:");
 		tmp.setLocation(input.nextLine());
 
-		if( (tmp.getEventuser()!= null) && !eventConflictExists(tmp.getDate())) {
+		if ((tmp.getEventuser() != null) && !eventConflictExists(tmp.getDate())) {
 			addEvent(tmp);
-		}
-		else {
+		} else {
 			System.out.println("\nEvent Scheduling failed ");
 		}
 	}
 
 	private void addEvent(Event tmp) {
 		Event nullEvent = new Event("", "", "", null);
-		if(Events.empty()) {
+		if (Events.empty()) {
 			Events.insert(nullEvent);
 			Events.insert(tmp);
 			System.out.println("\nEvent scheduled successfully!");
 			return;
 		}
 		Events.findFirst();
-		Event prev=Events.retrieve();
-		while(!Events.last()) {
-			if(Events.retrieve().compareTo(tmp)>0) {
+		Event prev = Events.retrieve();
+		while (!Events.last()) {
+			if (Events.retrieve().compareTo(tmp) > 0) {
 				Events.find(prev);
 				Events.insert(tmp);
 				System.out.println("\nEvent scheduled successfully!");
 				return;
 			}
-			prev=Events.retrieve();
+			prev = Events.retrieve();
 			Events.findNext();
 		}
-		if(Events.retrieve().compareTo(tmp)>0) {
+		if (Events.retrieve().compareTo(tmp) > 0) {
 			Events.find(prev);
 			Events.insert(tmp);
 			System.out.println("\nEvent scheduled successfully!");
 			return;
-		}
-		else {
+		} else {
 			Events.insert(tmp);
 			System.out.println("\nEvent scheduled successfully!");
 		}
 	}
 
-
 	public void PrintEventDetails(int criteria) {
-		//by contact name pos1
-		//by event title  
+		// by contact name pos1
+		// by event title
 
 		Scanner input = new Scanner(System.in);
-		if(Events.empty()) {
+		if (Events.empty()) {
 			System.out.println("\nEvent not found!");
-			return ;
+			return;
 		}
 		Events.findFirst();
 		Events.findNext();
-		String result="";
+		String result = "";
 		switch (criteria) {
-		case 1: {
-			System.out.print("Enter the contact's name:");
-			String contactName= input.nextLine();
-			System.out.println();
-			while(!Events.last()) {
-				if(Events.retrieve().getEventuser().getName().equalsIgnoreCase(contactName)) {
-					result+=Events.retrieve().Info();
+			case 1: {
+				System.out.print("Enter the contact's name:");
+				String contactName = input.nextLine();
+				System.out.println();
+				while (!Events.last()) {
+					if (Events.retrieve().getEventuser().getName().equalsIgnoreCase(contactName)) {
+						result += Events.retrieve().Info();
+					}
+					Events.findNext();
 				}
-				Events.findNext();
-			}
-			if(Events.retrieve().getEventuser().getName().equalsIgnoreCase(contactName)) {
-				result+=Events.retrieve().Info();
-			}
-			if(result!="") {
-				System.out.print("\nEvent found!");
-				System.out.println(result);
-			}
-			break;
-		}
-		case 2: {
-			System.out.print("Enter the event title:");
-			String eventTitle= input.nextLine();
-			while(!Events.last()) {
-				if(Events.retrieve().getTitle().equalsIgnoreCase(eventTitle)) {
-					result+=Events.retrieve().Info();
+				if (Events.retrieve().getEventuser().getName().equalsIgnoreCase(contactName)) {
+					result += Events.retrieve().Info();
 				}
-				Events.findNext();
+				if (result != "") {
+					System.out.print("\nEvent found!");
+					System.out.println(result);
+				}
+				break;
 			}
-			if(Events.retrieve().getTitle().equalsIgnoreCase(eventTitle)) {
-				result+=Events.retrieve().Info();
+			case 2: {
+				System.out.print("Enter the event title:");
+				String eventTitle = input.nextLine();
+				while (!Events.last()) {
+					if (Events.retrieve().getTitle().equalsIgnoreCase(eventTitle)) {
+						result += Events.retrieve().Info();
+					}
+					Events.findNext();
+				}
+				if (Events.retrieve().getTitle().equalsIgnoreCase(eventTitle)) {
+					result += Events.retrieve().Info();
+				}
+				if (result != "") {
+					System.out.print("\nEvent found!");
+					System.out.println(result);
+				}
+				break;
 			}
-			if(result!="") {
-				System.out.print("\nEvent found!");
-				System.out.println(result);
-			}
-			break;
-		}
-		default:
-			System.out.println("\ninvalid input");
+			default:
+				System.out.println("\ninvalid input");
 		}
 	}
 
 	public void printAllEventsAlphabetically() {
-		//CHANGE THE METHOD TO PRINT APPOINTMENTS TOO
+		// CHANGE THE METHOD TO PRINT APPOINTMENTS TOO
 
-		if(Events.empty())
+		if (Events.empty())
 			return;
-		String result="";
+		String result = "";
 		Events.findFirst();
 		Events.findNext();
-		while(!Events.last()) {
-			result+=Events.retrieve().Info();
+		while (!Events.last()) {
+			result += Events.retrieve().Info();
 			Events.findNext();
 		}
-		result+=Events.retrieve().Info();
+		result += Events.retrieve().Info();
 		System.out.println(result);
 	}
 
-	
 	public void printAllEventsAndAppointments() {
-		//ONLY IF THEY SHARE THE FIRST NAME
+		// ONLY IF THEY SHARE THE FIRST NAME
 	}
-		//
-
+	//
 
 	// -- helper methods for event --
 
 	private boolean eventConflictExists(String date) {
-		if(Events.empty()) {
-			return false ;             // empty 
+		if (Events.empty()) {
+			return false; // empty
 		}
 		Events.findFirst();
 		Events.findNext();
-		while(!Events.last()) {
-			if( Events.retrieve().getDate().equalsIgnoreCase(date) )  // list without the last 
-				return true ;
+		while (!Events.last()) {
+			if (Events.retrieve().getDate().equalsIgnoreCase(date)) // list without the last
+				return true;
 			Events.findNext();
-		} 
-		if( Events.retrieve().getDate().equalsIgnoreCase(date) )  // list element in Event 
-			return true ;
-		return false ;
+		}
+		if (Events.retrieve().getDate().equalsIgnoreCase(date)) // list element in Event
+			return true;
+		return false;
 	}
-
 
 	// main
 
@@ -197,7 +194,7 @@ public class Phonebook{
 		Scanner input = new Scanner(System.in);
 		int choice = 0;
 		do {
-			String menu="\nWelcome to the Linked Tree Phonebook!\r\n"
+			String menu = "\nWelcome to the Linked Tree Phonebook!\r\n"
 					+ "Please choose an option:\r\n"
 					+ "1. Add a contact\r\n"
 					+ "2. Search for a contact\r\n"
@@ -210,101 +207,99 @@ public class Phonebook{
 					+ "\nEnter your choice:";
 			System.out.print(menu);
 			try {
-				choice= input.nextInt();
+				choice = input.nextInt();
 				input.nextLine();
-			}
-			catch (Exception e) {
-				choice=9;
+			} catch (Exception e) {
+				choice = 9;
 				input.next();
 			}
 			switch (choice) {
-			case 1: {
-				Contact contact = new Contact();
-				System.out.print("\nEnter the contact's name:");
-				contact.setName(input.nextLine());
-				System.out.print("Enter the contact's phone number:");
-				contact.setPhoneNumber(input.next());
-				System.out.print("Enter the contact's email address:");
-				contact.setEmailAddress(input.next());
-				System.out.print("Enter the contact's address:");
-				contact.setAddress(input.nextLine());
-				contact.setAddress(input.nextLine());
-				System.out.print("Enter the contact's birthday:");
-				contact.setBirthday(input.next());
-				input.nextLine();
-				System.out.print("Enter any notes for the contact:");
-				contact.setNotes(input.nextLine());
-				if(!contactExists(contact)) {
-					System.out.println("\nContact added successfully!");
-					addContact(contact);
-				}
+				case 1: {
+					Contact contact = new Contact();
+					System.out.print("\nEnter the contact's name:");
+					contact.setName(input.nextLine());
+					System.out.print("Enter the contact's phone number:");
+					contact.setPhoneNumber(input.next());
+					System.out.print("Enter the contact's email address:");
+					contact.setEmailAddress(input.next());
+					System.out.print("Enter the contact's address:");
+					contact.setAddress(input.nextLine());
+					contact.setAddress(input.nextLine());
+					System.out.print("Enter the contact's birthday:");
+					contact.setBirthday(input.next());
+					input.nextLine();
+					System.out.print("Enter any notes for the contact:");
+					contact.setNotes(input.nextLine());
+					if (addContact(contact)) {
+						System.out.println("\nContact added successfully!");
+					}
 
-				break;
-			}
-			case 2: {
-				System.out.print("\nEnter search criteria:\r\n"
-						+ "1. Name\r\n"
-						+ "2. Phone Number\r\n"
-						+ "3. Email Address\r\n"
-						+ "4. Address\r\n"
-						+ "5. Birthday\r\n"
-						+ "\nEnter your choice:");
-				try {
-					int criteria=input.nextInt();
-					searchContact(criteria);
-				} catch (Exception e) {
-					System.out.println("\ninvalid input!\n");
-					choice=9;
-					input.next();
 					break;
 				}
+				case 2: {
+					System.out.print("\nEnter search criteria:\r\n"
+							+ "1. Name\r\n"
+							+ "2. Phone Number\r\n"
+							+ "3. Email Address\r\n"
+							+ "4. Address\r\n"
+							+ "5. Birthday\r\n"
+							+ "\nEnter your choice:");
+					try {
+						int criteria = input.nextInt();
+						searchContact(criteria);
+					} catch (Exception e) {
+						System.out.println("\ninvalid input!\n");
+						choice = 9;
+						input.next();
+						break;
+					}
 
-			}
-			break;
-			case 3: {
-				System.out.print("Enter the contact's name:");
-				deleteContact(input.nextLine());
-				break;
-			}
-			case 4: {
-				scheduleEvent();
-				break;
-			}
-			case 5: {
-				System.out.print("Enter search criteria:\r\n"
-						+ "1. contact name\r\n"
-						+ "2. Event tittle\r\n"
-						+ "Enter your choice:");
-				try{
-					int criteria=input.nextInt();
-					PrintEventDetails(criteria);
+				}
+					break;
+				case 3: {
+					System.out.print("Enter the contact's name:");
+					deleteContact(input.nextLine());
 					break;
 				}
-				catch (Exception e2) {
-					System.out.println("\ninvalid input!\n");
-					choice=9;
-					input.next();
+				case 4: {
+					scheduleEvent();
 					break;
 				}
+				case 5: {
+					System.out.print("Enter search criteria:\r\n"
+							+ "1. contact name\r\n"
+							+ "2. Event tittle\r\n"
+							+ "Enter your choice:");
+					try {
+						int criteria = input.nextInt();
+						PrintEventDetails(criteria);
+						break;
+					} catch (Exception e2) {
+						System.out.println("\ninvalid input!\n");
+						choice = 9;
+						input.next();
+						break;
+					}
+				}
+				case 6: {
+					System.out.print("Enter the first name:");
+					printContactsByFirstName(input.nextLine());
+					break;
+				}
+				case 7: {
+					printAllEventsAlphabetically();
+					break;
+				}
+				case 8: {
+					System.out.print("Goodbye!");
+					break;
+				}
+				default:
+					System.out.println("\ninvalid input! try again \n");
+					;
+					break;
 			}
-			case 6: {
-				System.out.print("Enter the first name:");
-				printContactsByFirstName(input.nextLine());
-				break;
-			}
-			case 7: {
-				printAllEventsAlphabetically();
-				break;
-			}
-			case 8: {
-				System.out.print("Goodbye!");
-				break;
-			}
-			default:
-				System.out.println("\ninvalid input! try again \n");;
-				break;
-			}
-		} while(choice != 8);
+		} while (choice != 8);
 
 		input.close();
 	}

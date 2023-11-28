@@ -1,14 +1,14 @@
 public class Contact implements Comparable<Contact> {
 
-	private String name ;
-	private String phoneNumber ;
+	private String name;
+	private String phoneNumber;
 	private String emailAddress;
-	private String address ;
-	private String birthday ;
-	private String notes ;
+	private String address;
+	private String birthday;
+	private String notes;
 
-
-	public Contact(String name, String phoneNumber, String emailAddress, String address, String birthday,String notes){
+	public Contact(String name, String phoneNumber, String emailAddress, String address, String birthday,
+			String notes) {
 
 		this.name = name;
 		this.phoneNumber = phoneNumber;
@@ -28,7 +28,6 @@ public class Contact implements Comparable<Contact> {
 		this.notes = "";
 
 	}
-
 
 	public String getName() {
 		return name;
@@ -78,22 +77,19 @@ public class Contact implements Comparable<Contact> {
 		this.notes = notes;
 	}
 
-
-
 	@Override
 	public int compareTo(Contact otherContact) {
 		return this.name.compareTo(otherContact.name);
 	}
 
-	public void printInfo () {
+	public void printInfo() {
 
 		System.out.println("Name: " + name);
 		System.out.println("Phone number: " + phoneNumber);
 		System.out.println("Email addres: " + emailAddress);
 		System.out.println("Address: " + address);
-		System.out.println("Birthday: " + birthday+"\n");
+		System.out.println("Birthday: " + birthday + "\n");
 
-	}	
-
+	}
 
 }
