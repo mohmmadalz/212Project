@@ -35,15 +35,31 @@ public class LinkedList<T extends Comparable<T>> {
 		current.data = val;
 	}
 
+	public boolean hasNext() {
+		return current.next != null;
+	}
+
 	public void insert(T val) {
-		Node<T> tmp;
-		if (empty()) {
-			current = head = new Node<T>(val);
+		Node<T> newNode = new Node<T>(val);
+
+		if (empty() || head.data.compareTo(val) > 0) {
+			// If the list is empty or the new value is smaller than the head, insert at the
+			// beginning
+			newNode.next = head;
+			head = newNode;
+			current = head;
 		} else {
-			tmp = current.next;
-			current.next = new Node<T>(val);
-			current = current.next;
-			current.next = tmp;
+			Node<T> tmp = head;
+
+			// Find the correct position to insert the new value
+			while (tmp.next != null && tmp.next.data.compareTo(val) < 0) {
+				tmp = tmp.next;
+			}
+
+			// Insert the new value in the correct position
+			newNode.next = tmp.next;
+			tmp.next = newNode;
+			current = newNode;
 		}
 	}
 

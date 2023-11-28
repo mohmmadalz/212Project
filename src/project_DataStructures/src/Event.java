@@ -3,22 +3,25 @@ public class Event implements Comparable<Event> {
 	private String title;
 	private String date;
 	private String location;
-	private Contact eventuser;
-	private LinkedList<Contact> contacts;
+	private LinkedList<String> contacts;
+	private boolean isEvent;
 	// add an aappointment
 	// modify the class as requested
 
-	public Event(String title, String date, String location, Contact contact) {
+	public Event(String title, String date, String location, boolean isEvent) {
 		this.title = title;
 		this.location = location;
-		this.eventuser = contact;
 		this.date = date;
 		contacts = new LinkedList<>();
-
+		this.isEvent = isEvent;
 	}
 
 	public Event() {
 
+	}
+
+	public void setContacts(LinkedList<String> contacts) {
+		this.contacts = contacts;
 	}
 
 	public String getTitle() {
@@ -33,24 +36,8 @@ public class Event implements Comparable<Event> {
 		return location;
 	}
 
-	public Contact getContact() {
-		return eventuser;
-	}
-
-	public Contact getEventuser() {
-		return eventuser;
-	}
-
-	public void setContacts(LinkedList<Contact> contacts) {
-		this.contacts = contacts;
-	}
-
-	public LinkedList<Contact> getContacts() {
+	public LinkedList<String> getContacts() {
 		return contacts;
-	}
-
-	public void setEventuser(Contact eventuser) {
-		this.eventuser = eventuser;
 	}
 
 	public void setTitle(String title) {
@@ -70,16 +57,20 @@ public class Event implements Comparable<Event> {
 		return this.title.compareTo(otherEvent.title);
 	}
 
-	public boolean addContact(Contact contact) {
-		if (!contacts.find(contact)) {
-			contacts.insert(contact);
+	public boolean addContact(String contactName) {
+		if (contacts.empty()) {
+			contacts.insert(contactName);
 			return true;
+		} else if (isEvent() && !contacts.find(contactName)) {
+			contacts.insert(contactName);
+			return true;
+		} else {
+			return false;
 		}
-		return false;
 	}
 
-	public boolean deleteContact(Contact contact) {
-		if (contacts.find(contact)) {
+	public boolean deleteContact(String contactName) {
+		if (contacts.find(contactName)) {
 			contacts.remove();
 			return true;
 		}
@@ -87,9 +78,34 @@ public class Event implements Comparable<Event> {
 	}
 
 	public String Info() {
-		return ("\nEvent title: " + getTitle() +
-				"\nContact name: " + eventuser.getName() +
-				"\nEvent date and time (MM/DD/YYYY HH:MM):  " + date +
-				"\nEvent location: " + location + "\n");
+		contacts.findFirst();
+
+		if (isEvent) {
+			String names = "";
+			while (!contacts.last()) {
+				names += contacts.retrieve() + ",";
+				contacts.findNext();
+			}
+			names += contacts.retrieve();
+
+			return ("\nEvent title: " + getTitle() +
+					"\nContacts name: " + names +
+					"\nEvent date and time (MM/DD/YYYY HH:MM):  " + date +
+					"\nEvent location: " + location + "\n");
+		} else {
+			return ("\nAppointment title: " + getTitle() +
+					"\nContacts name: " + contacts.retrieve() +
+					"\nAppointment date and time (MM/DD/YYYY HH:MM):  " + date +
+					"\nAppointment location: " + location + "\n");
+
+		}
+	}
+
+	public boolean isEvent() {
+		return isEvent;
+	}
+
+	public void setEvent(boolean isEvent) {
+		this.isEvent = isEvent;
 	}
 }

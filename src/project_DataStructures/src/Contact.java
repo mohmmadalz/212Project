@@ -119,4 +119,12 @@ public class Contact implements Comparable<Contact> {
 		this.events = events;
 	}
 
+	@Override
+	public String toString() {
+		return "Name: " + name + "\n"
+				+ "Phone number: " + phoneNumber + "\n"
+				+ "Email addres: " + emailAddress + "\n"
+				+ "Address: " + address + "\n"
+				+ "Birthday: " + birthday + "\n";
+	}
 }

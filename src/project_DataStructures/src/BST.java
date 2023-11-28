@@ -126,6 +126,7 @@ public class BST<T> {
 				}
 
 				current = root;
+				return true;
 			}
 
 		}
@@ -155,83 +156,154 @@ public class BST<T> {
 		return checkPhonenumberinorderTraversal(root, phonenumber);
 	}
 
+	private String result;
+
 	private void printContactWithFirstNameinorderTraversal(BSTNode<T> node, String firstName) {
 		if (node != null) {
 			printContactWithFirstNameinorderTraversal(node.getLeft(), firstName);
 			if (((Contact) node.getData()).getName().split(" ")[0].equalsIgnoreCase(firstName)) {
-				((Contact) node.getData()).printInfo();
+				result += ((Contact) node.getData()).toString();
 			}
 			printContactWithFirstNameinorderTraversal(node.getRight(), firstName);
 		}
 	}
 
 	// Public method to start the inorder traversal from the root
-	private void printContactWithFirstNameinorderTraversal(String firstName) {
+	public void printContactWithFirstNameinorderTraversal(String firstName) {
+		result = "";
 		checkPhonenumberinorderTraversal(root, firstName);
+		if (result.split("Email addres:").length == 2) {
+			System.out.println("Contact found!\n");
+			System.out.println(result);
+
+		} else if (result.isEmpty()) {
+			return;
+		} else {
+			System.out.println("Contacts found!");
+			System.out.println(result);
+
+		}
 	}
 
 	private void printContactByEmailinorderTraversal(BSTNode<T> node, String email) {
 		if (node != null) {
 			printContactWithFirstNameinorderTraversal(node.getLeft(), email);
 			if (((Contact) node.getData()).getEmailAddress().equalsIgnoreCase(email)) {
-				((Contact) node.getData()).printInfo();
+				result += ((Contact) node.getData()).toString();
+
 			}
 			printContactWithFirstNameinorderTraversal(node.getRight(), email);
 		}
 	}
 
 	// Public method to start the inorder traversal from the root
-	private void printContactByEmailinorderTraversal(String email) {
+	public void printContactByEmailinorderTraversal(String email) {
+		result = "";
+
 		checkPhonenumberinorderTraversal(root, email);
+		if (result.split("Email addres:").length == 2) {
+			System.out.println("Contact found!\n");
+			System.out.println(result);
+
+		} else if (result.isEmpty()) {
+			return;
+		} else {
+			System.out.println("Contacts found!");
+			System.out.println(result);
+
+		}
 	}
 
 	private void printContactByphoneNumberinorderTraversal(BSTNode<T> node, String phonenumber) {
 		if (node != null) {
 			printContactWithFirstNameinorderTraversal(node.getLeft(), phonenumber);
 			if (((Contact) node.getData()).getPhoneNumber().equalsIgnoreCase(phonenumber)) {
-				((Contact) node.getData()).printInfo();
+				result += ((Contact) node.getData()).toString();
+
 			}
 			printContactWithFirstNameinorderTraversal(node.getRight(), phonenumber);
 		}
 	}
 
 	// Public method to start the inorder traversal from the root
-	private void printContactByphoneNumberinorderTraversal(String phonenumber) {
+	public void printContactByphoneNumberinorderTraversal(String phonenumber) {
+		result = "";
+
 		checkPhonenumberinorderTraversal(root, phonenumber);
+		if (result.split("Email addres:").length == 2) {
+			System.out.println("Contact found!\n");
+			System.out.println(result);
+
+		} else if (result.isEmpty()) {
+			return;
+		} else {
+			System.out.println("Contacts found!");
+			System.out.println(result);
+
+		}
 	}
 
 	private void printContactByBirthDayinorderTraversal(BSTNode<T> node, String BirthDay) {
 		if (node != null) {
 			printContactWithFirstNameinorderTraversal(node.getLeft(), BirthDay);
 			if (((Contact) node.getData()).getPhoneNumber().equalsIgnoreCase(BirthDay)) {
-				((Contact) node.getData()).printInfo();
+				result += ((Contact) node.getData()).toString();
+
 			}
 			printContactWithFirstNameinorderTraversal(node.getRight(), BirthDay);
 		}
 	}
 
 	// Public method to start the inorder traversal from the root
-	private void printContactByBirthDayinorderTraversal(String BirthDay) {
+	public void printContactByBirthDayinorderTraversal(String BirthDay) {
+		result = "";
+
 		checkPhonenumberinorderTraversal(root, BirthDay);
+		if (result.split("Email addres:").length == 2) {
+			System.out.println("Contact found!\n");
+			System.out.println(result);
+
+		} else if (result.isEmpty()) {
+			return;
+		} else {
+			System.out.println("Contacts found!");
+			System.out.println(result);
+
+		}
 	}
 
 	private void printContactByAddressinorderTraversal(BSTNode<T> node, String address) {
 		if (node != null) {
 			printContactWithFirstNameinorderTraversal(node.getLeft(), address);
 			if (((Contact) node.getData()).getPhoneNumber().equalsIgnoreCase(address)) {
-				((Contact) node.getData()).printInfo();
+				result += ((Contact) node.getData()).toString();
+
 			}
 			printContactWithFirstNameinorderTraversal(node.getRight(), address);
 		}
 	}
 
 	// Public method to start the inorder traversal from the root
-	private void printContactByAddressinorderTraversal(String address) {
+	public void printContactByAddressinorderTraversal(String address) {
+		result = "";
+
 		checkPhonenumberinorderTraversal(root, address);
+		if (result.split("Email addres:").length == 2) {
+			System.out.println("Contact found!\n");
+			System.out.println(result);
+
+		} else if (result.isEmpty()) {
+			return;
+		} else {
+			System.out.println("Contacts found!");
+			System.out.println(result);
+
+		}
 	}
 
-	private void printContactByName(String name) {
+	public void printContactByName(String name) {
 		if (findkey(name)) {
+			System.out.println("Contact found!\n");
 			((Contact) current.getData()).printInfo();
 		}
 	}
