@@ -1,4 +1,4 @@
-public class LinkedList<T>  {
+public class LinkedList<T extends Comparable<T>> {
 	// for event
 	private Node<T> head;
 	private Node<T> current;
@@ -35,20 +35,17 @@ public class LinkedList<T>  {
 		current.data = val;
 	}
 
-	public void insert (T val) {
+	public void insert(T val) {
 		Node<T> tmp;
 		if (empty()) {
-			current = head = new Node<T> (val);
-		}
-		else {
+			current = head = new Node<T>(val);
+		} else {
 			tmp = current.next;
-			current.next = new Node<T> (val);
+			current.next = new Node<T>(val);
 			current = current.next;
 			current.next = tmp;
 		}
 	}
-
-	
 
 	public void remove() {
 
@@ -72,8 +69,8 @@ public class LinkedList<T>  {
 	public Boolean find(T value) {
 		Node<T> tmp = head;
 		while (tmp != null) {
-			if (tmp.data.equals(value)) {
-				current=tmp;
+			if (tmp.data.compareTo(value) == 0) {
+				current = tmp;
 				return true;
 			}
 			tmp = tmp.next;

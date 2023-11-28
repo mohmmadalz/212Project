@@ -6,6 +6,7 @@ public class Contact implements Comparable<Contact> {
 	private String address;
 	private String birthday;
 	private String notes;
+	private LinkedList<Event> events;
 
 	public Contact(String name, String phoneNumber, String emailAddress, String address, String birthday,
 			String notes) {
@@ -16,6 +17,7 @@ public class Contact implements Comparable<Contact> {
 		this.address = address;
 		this.birthday = birthday;
 		this.notes = notes;
+		events = new LinkedList<>();
 
 	}
 
@@ -26,6 +28,7 @@ public class Contact implements Comparable<Contact> {
 		this.address = "";
 		this.birthday = null;
 		this.notes = "";
+		events = new LinkedList<>();
 
 	}
 
@@ -82,6 +85,22 @@ public class Contact implements Comparable<Contact> {
 		return this.name.compareTo(otherContact.name);
 	}
 
+	public boolean addEvent(Event event) {
+		if (!events.find(event)) {
+			events.insert(event);
+			return true;
+		}
+		return false;
+	}
+
+	public boolean deleteEvent(Event event) {
+		if (events.find(event)) {
+			events.remove();
+			return true;
+		}
+		return false;
+	}
+
 	public void printInfo() {
 
 		System.out.println("Name: " + name);
@@ -90,6 +109,14 @@ public class Contact implements Comparable<Contact> {
 		System.out.println("Address: " + address);
 		System.out.println("Birthday: " + birthday + "\n");
 
+	}
+
+	public LinkedList<Event> getEvents() {
+		return events;
+	}
+
+	public void setEvents(LinkedList<Event> events) {
+		this.events = events;
 	}
 
 }
