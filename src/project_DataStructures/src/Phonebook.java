@@ -78,7 +78,7 @@ public class Phonebook {
 					}
 					contactEvents.findNext();
 				}
-				System.out.print("\nContact deleted successfully.");
+				System.out.println("\nContact deleted successfully.");
 				return;
 			}
 		}
@@ -93,6 +93,7 @@ public class Phonebook {
 	public void scheduleEvent(int criteria) {
 		// 1- contact exist
 		// 2- no conflict
+		// 3- is it Event or appointment ?
 		// check if the contact is exist in bst here
 		String name;
 		Scanner input = new Scanner(System.in);
@@ -104,7 +105,7 @@ public class Phonebook {
 			tmp.setTitle(input.nextLine());
 			System.out.print("Enter contacts name separated by a comma: ");
 			name = input.nextLine();
-			String[] names = name.split(",");
+			String[] names = name.split(","); 
 			for (int i = 0; i < names.length; i++) {
 				contactsAdded = tmp.addContact(names[i]);
 				if (!contactsAdded) {
@@ -119,6 +120,7 @@ public class Phonebook {
 			tmp.setDate(input.nextLine());
 			System.out.print("Enter event location:");
 			tmp.setLocation(input.nextLine());
+			tmp.setisEvent(true);
 			if (contactsAdded && !eventConflictExists(tmp.getDate())) {
 				events.insert(tmp);
 				for (int i = 0; i < names.length; i++) {
@@ -132,7 +134,7 @@ public class Phonebook {
 				return;
 
 			}
-		} else {
+		} else if(criteria == 2) {
 			tmp.setEvent(false);
 			System.out.print("\nEnter appointment title:");
 			tmp.setTitle(input.nextLine());
@@ -143,11 +145,12 @@ public class Phonebook {
 			tmp.setDate(input.nextLine());
 			System.out.print("Enter appointment location:");
 			tmp.setLocation(input.nextLine());
+			tmp.setEvent(false);
 			if (!eventConflictExists(tmp.getDate()) && contacts.findkey(name)) {
 				events.insert(tmp);
 				contacts.findkey(name);
 				contacts.retrieve().addEvent(tmp);
-				System.out.println("\nEvent scheduled successfully!");
+				System.out.println("\nAppointment scheduled successfully!");
 			} else {
 				System.out.println("\nAppointment Scheduling failed ");
 			}

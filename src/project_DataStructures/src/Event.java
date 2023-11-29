@@ -4,7 +4,7 @@ public class Event implements Comparable<Event> {
 	private String date;
 	private String location;
 	private LinkedList<String> contacts;
-	private boolean isEvent;
+	private boolean isEvent;   // true == Event   false == Appointment
 	// add an aappointment
 	// modify the class as requested
 
@@ -17,6 +17,11 @@ public class Event implements Comparable<Event> {
 	}
 
 	public Event() {
+		this.title = "";
+		this.location = "";
+		this.date = "";
+		contacts = new LinkedList<>();
+		this.isEvent = isEvent;
 
 	}
 
@@ -50,6 +55,14 @@ public class Event implements Comparable<Event> {
 
 	public void setLocation(String location) {
 		this.location = location;
+	}
+
+	public void setisEvent(boolean Event){
+		this.isEvent = Event ;
+	}
+
+	public boolean getisEvent(){
+		return isEvent ;
 	}
 
 	@Override
