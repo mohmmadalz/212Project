@@ -177,7 +177,7 @@ public class BST<T> {
 	// Public method to start the inorder traversal from the root
 	public void printContactWithFirstNameinorderTraversal(String firstName) {
 		result = "";
-		checkPhonenumberinorderTraversal(root, firstName);
+		printContactWithFirstNameinorderTraversal(root, firstName);
 		if (result.split("Email addres:").length == 2) {
 			System.out.println("Contact found!\n");
 			System.out.println(result);
