@@ -26,10 +26,11 @@ public class BST<T> {
 
 		while (p != null) {
 			q = p;
-			if (p.key == tkey) {
+			if (p.key.compareTo(tkey) == 0) {
 				current = p;
 				return true;
-			} else if (tkey.compareTo(p.key) > 0)
+			}
+			else if (tkey.compareTo(p.key) < 0)
 				p = p.left;
 			else
 				p = p.right;
@@ -56,7 +57,7 @@ public class BST<T> {
 		} else {
 
 			// current is pointing to parent of the new key
-			if (k.compareTo(current.key) > 0)
+			if (k.compareTo(current.key) < 0)
 				current.left = p;
 			else
 				current.right = p;
@@ -72,12 +73,12 @@ public class BST<T> {
 
 		while (p != null) {
 
-			if (k1.compareTo(p.getKey()) > 0) {
+			if (k1.compareTo(p.getKey()) < 0) {
 				q = p;
 				p = p.getLeft();
 			}
 
-			else if (k1.compareTo(p.getKey()) < 0) {
+			else if (k1.compareTo(p.getKey()) > 0) {
 				q = p;
 				p = p.getRight();
 			}
@@ -156,6 +157,11 @@ public class BST<T> {
 		return checkPhonenumberinorderTraversal(root, phonenumber);
 	}
 
+	
+
+	// all method to print contact
+
+	
 	private String result;
 
 	private void printContactWithFirstNameinorderTraversal(BSTNode<T> node, String firstName) {
@@ -306,6 +312,7 @@ public class BST<T> {
 			System.out.println("Contact found!\n");
 			((Contact) current.getData()).printInfo();
 		}
+
 	}
 
 }
