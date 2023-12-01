@@ -9,8 +9,8 @@ public class Phonebook {
 		events = new LinkedList<>();
 
 	}
-	
-			// option 1 in menu
+
+	// option 1 in menu
 	public boolean addContact(Contact contact) {
 		boolean flag = contacts.insert(contact.getName(), contact);
 		if (!flag) {
@@ -19,7 +19,8 @@ public class Phonebook {
 		return true;
 
 	}
-		// option 2 in menu
+
+	// option 2 in menu
 	public void searchContact(int criteria) {
 		String searchValue = "";
 		Scanner input = new Scanner(System.in);
@@ -74,24 +75,27 @@ public class Phonebook {
 
 	}
 
-			// option 3 in menu
+	// option 3 in menu
 	public void deleteContact(String contactName) {
 		if (contacts.findkey(contactName)) {
 			Contact temp = contacts.retrieve();
 			if (contacts.removeKey(contactName)) {
 				LinkedList<Event> contactEvents = temp.getEvents();
-				while (!contactEvents.last()) {
+				if (!contactEvents.empty()) {
+					contactEvents.findFirst();
+					while (!contactEvents.last()) {
+						events.find(contactEvents.retrieve());
+						events.retrieve().deleteContact(contactName);
+						if (events.retrieve().getContacts().empty()) {
+							events.remove();
+						}
+						contactEvents.findNext();
+					}
 					System.out.println(events.find(contactEvents.retrieve()));
 					System.out.println(events.retrieve().deleteContact(contactName));
 					if (events.retrieve().getContacts().empty()) {
 						events.remove();
 					}
-					contactEvents.findNext();
-				}
-				System.out.println(events.find(contactEvents.retrieve()));
-				System.out.println(events.retrieve().deleteContact(contactName));
-				if (events.retrieve().getContacts().empty()) {
-					events.remove();
 				}
 				System.out.println("\nContact deleted successfully.");
 				return;
@@ -99,14 +103,14 @@ public class Phonebook {
 		}
 	}
 
-		// option 6 in menu
+	// option 6 in menu
 	public void printContactsByFirstName(String firstName) {
 		contacts.printContactWithFirstNameinorderTraversal(firstName);
 	}
 
 	// -- event method --
 
-			// option 4 in menu
+	// option 4 in menu
 	public void scheduleEvent(int criteria) {
 		// 1- contact exist
 		// 2- no conflict
@@ -116,7 +120,7 @@ public class Phonebook {
 		Scanner input = new Scanner(System.in);
 		Event tmp = new Event();
 		boolean contactsAdded = true;
-		if (criteria == 1) { //event
+		if (criteria == 1) { // event
 			tmp.setEvent(true);
 			System.out.print("\nEnter event title:");
 			tmp.setTitle(input.nextLine());
@@ -177,9 +181,10 @@ public class Phonebook {
 		}
 
 	}
-		// option 5 in menu
+
+	// option 5 in menu
 	public void PrintEventDetails(int criteria) {
-		// by contact name 
+		// by contact name
 		// by event title
 
 		Scanner input = new Scanner(System.in);
@@ -243,7 +248,7 @@ public class Phonebook {
 		}
 	}
 
-		// option 7 in menu
+	// option 7 in menu
 	public void printAllEventsAlphabetically() {
 		// CHANGE THE METHOD TO PRINT APPOINTMENTS TOO
 
