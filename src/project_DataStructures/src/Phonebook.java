@@ -114,6 +114,7 @@ public class Phonebook {
 			tmp.setTitle(input.nextLine());
 			System.out.print("Enter contacts name separated by a comma: ");
 			name = input.nextLine();
+			System.out.print("");
 			String[] names = name.split(",");
 			for (int i = 0; i < names.length; i++) {
 				contactsAdded = tmp.addContact(names[i]);
@@ -129,6 +130,8 @@ public class Phonebook {
 			tmp.setDate(input.nextLine());
 			System.out.print("Enter event location:");
 			tmp.setLocation(input.nextLine());
+			System.out.print("");
+
 			tmp.setisEvent(true);
 			if (contactsAdded && !eventConflictExists(tmp.getDate())) {
 				events.insert(tmp);
@@ -190,11 +193,13 @@ public class Phonebook {
 					return;
 				}
 				LinkedList<Event> temp = contacts.retrieve().getEvents();
-				while (temp.hasNext()) {
+				while (!temp.last()) {
 					result += temp.retrieve().Info();
 					temp.findNext();
 					count++;
 				}
+				result += temp.retrieve().Info();
+				count++;
 				if (count == 1) {
 					System.out.print(result.split(" ")[0] + " found!");
 					System.out.println(result);
@@ -209,14 +214,16 @@ public class Phonebook {
 			case 2: {
 				System.out.print("Enter the event title:");
 				String eventTitle = input.nextLine();
-				while (events.hasNext()) {
+				while (!events.last()) {
 					if (events.retrieve().getTitle().equalsIgnoreCase(eventTitle)) {
 						result += events.retrieve().Info();
 
 					}
 					events.findNext();
 				}
-
+				if (events.retrieve().getTitle().equalsIgnoreCase(eventTitle)) {
+					result += events.retrieve().Info();
+				}
 				if (result != "") {
 					System.out.print("\nEvent found!");
 					System.out.println(result);
@@ -235,10 +242,12 @@ public class Phonebook {
 			return;
 		String result = "";
 		events.findFirst();
-		while (events.hasNext()) {
+		while (!events.last()) {
 			result += events.retrieve().Info();
 			events.findNext();
 		}
+		result += events.retrieve().Info();
+
 		System.out.println(result);
 	}
 

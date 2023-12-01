@@ -39,10 +39,18 @@ public class LinkedList<T extends Comparable<T>> {
 		return current.next != null;
 	}
 
+	public boolean isFirst() {
+		return current == head;
+	}
+
 	public void insert(T val) {
 		Node<T> newNode = new Node<T>(val);
-
-		if (empty() || head.data.compareTo(val) > 0) {
+		if (empty()) {
+			head = newNode;
+			current = head;
+			return;
+		}
+		if (head.data.compareTo(val) > 0) {
 			// If the list is empty or the new value is smaller than the head, insert at the
 			// beginning
 			newNode.next = head;
