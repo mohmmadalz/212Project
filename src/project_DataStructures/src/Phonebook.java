@@ -79,13 +79,18 @@ public class Phonebook {
 			Contact temp = contacts.retrieve();
 			if (contacts.removeKey(contactName)) {
 				LinkedList<Event> contactEvents = temp.getEvents();
-				while (contactEvents.hasNext()) {
-					events.find(contactEvents.retrieve());
-					events.retrieve().deleteContact(contactName);
+				while (!contactEvents.last()) {
+					System.out.println(events.find(contactEvents.retrieve()));
+					System.out.println(events.retrieve().deleteContact(contactName));
 					if (events.retrieve().getContacts().empty()) {
 						events.remove();
 					}
 					contactEvents.findNext();
+				}
+				System.out.println(events.find(contactEvents.retrieve()));
+				System.out.println(events.retrieve().deleteContact(contactName));
+				if (events.retrieve().getContacts().empty()) {
+					events.remove();
 				}
 				System.out.println("\nContact deleted successfully.");
 				return;
