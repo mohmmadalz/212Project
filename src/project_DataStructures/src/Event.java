@@ -5,8 +5,7 @@ public class Event implements Comparable<Event> {
 	private String location;
 	private LinkedList<String> contacts;
 	private boolean isEvent;   // true == Event   false == Appointment
-	// add an aappointment
-	// modify the class as requested
+	
 
 	public Event(String title, String date, String location, boolean isEvent) {
 		this.title = title;
@@ -70,6 +69,7 @@ public class Event implements Comparable<Event> {
 		return this.title.compareTo(otherEvent.title);
 	}
 
+	// it will add the contact name that have event/appointment
 	public boolean addContact(String contactName) {
 		if (contacts.empty()) {
 			contacts.insert(contactName);
@@ -82,6 +82,7 @@ public class Event implements Comparable<Event> {
 		}
 	}
 
+	// it will reomve the contact name that have event/appointment
 	public boolean deleteContact(String contactName) {
 		if (contacts.find(contactName)) {
 			contacts.remove();
@@ -90,6 +91,8 @@ public class Event implements Comparable<Event> {
 		return false;
 	}
 
+
+	// it will print the info for the event/appointment
 	public String Info() {
 		contacts.findFirst();
 

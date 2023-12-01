@@ -4,7 +4,7 @@ public class BSTNode<T> {
 	public T data;
 	public BSTNode<T> left, right;
 	// Creates a new instance of BSTNode
-	//hi
+
 	public BSTNode(String k, T val) { // without left and right
 		key = k;
 		data = val;

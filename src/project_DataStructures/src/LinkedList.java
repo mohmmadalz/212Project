@@ -43,6 +43,7 @@ public class LinkedList<T extends Comparable<T>> {
 		return current == head;
 	}
 
+	// add
 	public void insert(T val) {
 		Node<T> newNode = new Node<T>(val);
 		if (empty()) {
@@ -71,6 +72,7 @@ public class LinkedList<T extends Comparable<T>> {
 		}
 	}
 
+	//remove
 	public void remove() {
 
 		if (current == head) {
@@ -90,6 +92,7 @@ public class LinkedList<T extends Comparable<T>> {
 			current = current.next;
 	}
 
+	//find
 	public Boolean find(T value) {
 		Node<T> tmp = head;
 		while (tmp != null) {

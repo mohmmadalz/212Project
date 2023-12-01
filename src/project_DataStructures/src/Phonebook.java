@@ -9,8 +9,8 @@ public class Phonebook {
 		events = new LinkedList<>();
 
 	}
-	//
-
+	
+			// option 1 in menu
 	public boolean addContact(Contact contact) {
 		boolean flag = contacts.insert(contact.getName(), contact);
 		if (!flag) {
@@ -19,7 +19,7 @@ public class Phonebook {
 		return true;
 
 	}
-
+		// option 2 in menu
 	public void searchContact(int criteria) {
 		String searchValue = "";
 		Scanner input = new Scanner(System.in);
@@ -74,6 +74,7 @@ public class Phonebook {
 
 	}
 
+			// option 3 in menu
 	public void deleteContact(String contactName) {
 		if (contacts.findkey(contactName)) {
 			Contact temp = contacts.retrieve();
@@ -98,12 +99,14 @@ public class Phonebook {
 		}
 	}
 
+		// option 6 in menu
 	public void printContactsByFirstName(String firstName) {
 		contacts.printContactWithFirstNameinorderTraversal(firstName);
 	}
 
 	// -- event method --
 
+			// option 4 in menu
 	public void scheduleEvent(int criteria) {
 		// 1- contact exist
 		// 2- no conflict
@@ -113,7 +116,7 @@ public class Phonebook {
 		Scanner input = new Scanner(System.in);
 		Event tmp = new Event();
 		boolean contactsAdded = true;
-		if (criteria == 1) {
+		if (criteria == 1) { //event
 			tmp.setEvent(true);
 			System.out.print("\nEnter event title:");
 			tmp.setTitle(input.nextLine());
@@ -151,7 +154,7 @@ public class Phonebook {
 				return;
 
 			}
-		} else if (criteria == 2) {
+		} else if (criteria == 2) { // appointment
 			tmp.setEvent(false);
 			System.out.print("\nEnter appointment title:");
 			tmp.setTitle(input.nextLine());
@@ -174,9 +177,9 @@ public class Phonebook {
 		}
 
 	}
-
+		// option 5 in menu
 	public void PrintEventDetails(int criteria) {
-		// by contact name pos1
+		// by contact name 
 		// by event title
 
 		Scanner input = new Scanner(System.in);
@@ -188,7 +191,7 @@ public class Phonebook {
 		String result = "";
 		int count = 0;
 		switch (criteria) {
-			case 1: {
+			case 1: { // contact name
 				System.out.print("Enter the contact's name:");
 				String contactName = input.nextLine();
 				System.out.println();
@@ -216,7 +219,7 @@ public class Phonebook {
 				}
 				break;
 			}
-			case 2: {
+			case 2: { // event title
 				System.out.print("Enter the event title:");
 				String eventTitle = input.nextLine();
 				while (!events.last()) {
@@ -240,6 +243,7 @@ public class Phonebook {
 		}
 	}
 
+		// option 7 in menu
 	public void printAllEventsAlphabetically() {
 		// CHANGE THE METHOD TO PRINT APPOINTMENTS TOO
 

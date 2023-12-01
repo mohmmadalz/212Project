@@ -85,6 +85,7 @@ public class Contact implements Comparable<Contact> {
 		return this.name.compareTo(otherContact.name);
 	}
 
+	// it will add the event/appintment to contact
 	public boolean addEvent(Event event) {
 		if (!events.find(event)) {
 			events.insert(event);
@@ -92,7 +93,8 @@ public class Contact implements Comparable<Contact> {
 		}
 		return false;
 	}
-
+    
+		// it will reomve the event/appintment from contact
 	public boolean deleteEvent(Event event) {
 		if (events.find(event)) {
 			events.remove();
@@ -101,6 +103,7 @@ public class Contact implements Comparable<Contact> {
 		return false;
 	}
 
+		// it will print the contact info 
 	public void printInfo() {
 
 		System.out.println("Name: " + name);
