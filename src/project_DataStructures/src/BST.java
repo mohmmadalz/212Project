@@ -29,8 +29,7 @@ public class BST<T> {
 			if (p.key.compareTo(tkey) == 0) {
 				current = p;
 				return true;
-			}
-			else if (tkey.compareTo(p.key) < 0)
+			} else if (tkey.compareTo(p.key) < 0)
 				p = p.left;
 			else
 				p = p.right;
@@ -157,11 +156,8 @@ public class BST<T> {
 		return checkPhonenumberinorderTraversal(root, phonenumber);
 	}
 
-	
-
 	// all method to print contact
 
-	
 	private String result;
 
 	private void printContactWithFirstNameinorderTraversal(BSTNode<T> node, String firstName) {
@@ -193,12 +189,12 @@ public class BST<T> {
 
 	private void printContactByEmailinorderTraversal(BSTNode<T> node, String email) {
 		if (node != null) {
-			printContactWithFirstNameinorderTraversal(node.getLeft(), email);
+			printContactByEmailinorderTraversal(node.getLeft(), email);
 			if (((Contact) node.getData()).getEmailAddress().equalsIgnoreCase(email)) {
 				result += ((Contact) node.getData()).toString();
 
 			}
-			printContactWithFirstNameinorderTraversal(node.getRight(), email);
+			printContactByEmailinorderTraversal(node.getRight(), email);
 		}
 	}
 
@@ -206,7 +202,7 @@ public class BST<T> {
 	public void printContactByEmailinorderTraversal(String email) {
 		result = "";
 
-		checkPhonenumberinorderTraversal(root, email);
+		printContactByEmailinorderTraversal(root, email);
 		if (result.split("Email addres:").length == 2) {
 			System.out.println("Contact found!\n");
 			System.out.println(result);
@@ -222,12 +218,12 @@ public class BST<T> {
 
 	private void printContactByphoneNumberinorderTraversal(BSTNode<T> node, String phonenumber) {
 		if (node != null) {
-			printContactWithFirstNameinorderTraversal(node.getLeft(), phonenumber);
+			printContactByphoneNumberinorderTraversal(node.getLeft(), phonenumber);
 			if (((Contact) node.getData()).getPhoneNumber().equalsIgnoreCase(phonenumber)) {
 				result += ((Contact) node.getData()).toString();
 
 			}
-			printContactWithFirstNameinorderTraversal(node.getRight(), phonenumber);
+			printContactByphoneNumberinorderTraversal(node.getRight(), phonenumber);
 		}
 	}
 
@@ -235,7 +231,7 @@ public class BST<T> {
 	public void printContactByphoneNumberinorderTraversal(String phonenumber) {
 		result = "";
 
-		checkPhonenumberinorderTraversal(root, phonenumber);
+		printContactByphoneNumberinorderTraversal(root, phonenumber);
 		if (result.split("Email addres:").length == 2) {
 			System.out.println("Contact found!\n");
 			System.out.println(result);
@@ -251,12 +247,12 @@ public class BST<T> {
 
 	private void printContactByBirthDayinorderTraversal(BSTNode<T> node, String BirthDay) {
 		if (node != null) {
-			printContactWithFirstNameinorderTraversal(node.getLeft(), BirthDay);
-			if (((Contact) node.getData()).getPhoneNumber().equalsIgnoreCase(BirthDay)) {
+			printContactByBirthDayinorderTraversal(node.getLeft(), BirthDay);
+			if (((Contact) node.getData()).getBirthday().equalsIgnoreCase(BirthDay)) {
 				result += ((Contact) node.getData()).toString();
 
 			}
-			printContactWithFirstNameinorderTraversal(node.getRight(), BirthDay);
+			printContactByBirthDayinorderTraversal(node.getRight(), BirthDay);
 		}
 	}
 
@@ -264,7 +260,7 @@ public class BST<T> {
 	public void printContactByBirthDayinorderTraversal(String BirthDay) {
 		result = "";
 
-		checkPhonenumberinorderTraversal(root, BirthDay);
+		printContactByBirthDayinorderTraversal(root, BirthDay);
 		if (result.split("Email addres:").length == 2) {
 			System.out.println("Contact found!\n");
 			System.out.println(result);
@@ -280,12 +276,12 @@ public class BST<T> {
 
 	private void printContactByAddressinorderTraversal(BSTNode<T> node, String address) {
 		if (node != null) {
-			printContactWithFirstNameinorderTraversal(node.getLeft(), address);
-			if (((Contact) node.getData()).getPhoneNumber().equalsIgnoreCase(address)) {
+			printContactByAddressinorderTraversal(node.getLeft(), address);
+			if (((Contact) node.getData()).getAddress().equalsIgnoreCase(address)) {
 				result += ((Contact) node.getData()).toString();
 
 			}
-			printContactWithFirstNameinorderTraversal(node.getRight(), address);
+			printContactByAddressinorderTraversal(node.getRight(), address);
 		}
 	}
 
@@ -293,7 +289,7 @@ public class BST<T> {
 	public void printContactByAddressinorderTraversal(String address) {
 		result = "";
 
-		checkPhonenumberinorderTraversal(root, address);
+		printContactByAddressinorderTraversal(root, address);
 		if (result.split("Email addres:").length == 2) {
 			System.out.println("Contact found!\n");
 			System.out.println(result);

@@ -28,19 +28,25 @@ public class Phonebook {
 			case 1:
 				System.out.print("\nEnter the contact's name:");
 				searchValue = input.nextLine();
+				System.out.print("");
+
 				contacts.printContactByName(searchValue);
 				break;
 
 			case 2:
 				System.out.print("\nEnter the contact's PhoneNumber:");
-				searchValue = input.next();
+				searchValue = input.nextLine();
+				System.out.print("");
+
 				contacts.printContactByphoneNumberinorderTraversal(searchValue);
 
 				break;
 
 			case 3:
 				System.out.print("\nEnter the contact's EmailAddress: ");
-				searchValue = input.next();
+				searchValue = input.nextLine();
+				System.out.print("");
+
 				contacts.printContactByEmailinorderTraversal(searchValue);
 
 				break;
@@ -48,13 +54,16 @@ public class Phonebook {
 			case 4:
 				System.out.print("\nEnter the contact's Address:");
 				searchValue = input.nextLine();
+				System.out.print("");
 				contacts.printContactByAddressinorderTraversal(searchValue);
 
 				break;
 
 			case 5:
 				System.out.print("\nEnter the contact's Birthday:");
-				searchValue = input.next();
+				searchValue = input.nextLine();
+				System.out.print("");
+
 				contacts.printContactByBirthDayinorderTraversal(searchValue);
 
 				break;
@@ -105,7 +114,7 @@ public class Phonebook {
 			tmp.setTitle(input.nextLine());
 			System.out.print("Enter contacts name separated by a comma: ");
 			name = input.nextLine();
-			String[] names = name.split(","); 
+			String[] names = name.split(",");
 			for (int i = 0; i < names.length; i++) {
 				contactsAdded = tmp.addContact(names[i]);
 				if (!contactsAdded) {
@@ -134,7 +143,7 @@ public class Phonebook {
 				return;
 
 			}
-		} else if(criteria == 2) {
+		} else if (criteria == 2) {
 			tmp.setEvent(false);
 			System.out.print("\nEnter appointment title:");
 			tmp.setTitle(input.nextLine());
