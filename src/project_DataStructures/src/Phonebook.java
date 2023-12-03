@@ -101,6 +101,7 @@ public class Phonebook {
 				return;
 			}
 		}
+				System.out.println("\nContact deleted failed.");
 	}
 
 	// option 6 in menu
@@ -325,6 +326,8 @@ public class Phonebook {
 					if (addContact(contact)) {
 						System.out.println("\nContact added successfully!");
 					}
+					else
+						System.out.println("\nContact added failed!");
 
 					break;
 				}
