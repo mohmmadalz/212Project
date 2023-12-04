@@ -1,3 +1,26 @@
+//*************Example***************
+//
+//CLASS: BST.java
+//
+//CSC212 Data structures - Project phase II
+//
+//Fall 2023
+//
+//EDIT DATE: 3/12/2023
+//
+//
+//
+//TEAM: faiasl && mohmmed && mohmmed
+//
+//Team Name : Null Byet
+//
+//AUTHORS:
+//
+//443101660 faisal alhaqbani
+//443100700 mohmmed alzobudi
+//443101706 mohmmed almuhaitheef
+//
+////***********************************
 public class BST<T> {
 
 	BSTNode<T> root, current;
